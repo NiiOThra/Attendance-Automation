@@ -1,4 +1,4 @@
-package sample;
+package GUI.controller;
 
 public class LoginController {
 }
