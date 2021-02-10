@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.LoginController">
    <children>
-      <Text layoutX=GUI.controller.LoginController"36.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
+      <Text layoutX="36.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
       <Text layoutX="193.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
       <TextField layoutX="36.0" layoutY="67.0" />
       <TextField layoutX="193.0" layoutY="67.0" />
