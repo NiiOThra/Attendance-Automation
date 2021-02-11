@@ -1,4 +1,4 @@
-package GUI.controller;
+package GUI.StudentView;
 
 public class AttendanceController {
 }
