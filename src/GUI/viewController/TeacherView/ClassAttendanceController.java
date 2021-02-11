@@ -1,14 +1,15 @@
 package GUI.viewController.TeacherView;
 
+import BE.Class;
 import BE.Student;
 import GUI.Model.TeacherModel;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,6 +23,7 @@ public class ClassAttendanceController implements Initializable {
 
     private TeacherModel teacherModel;
     private ObservableList<Student> allStudents;
+    private ObservableList<Class> allClasses;
 
     @FXML
     private TableView<Student> lstAllStudents;
@@ -29,6 +31,8 @@ public class ClassAttendanceController implements Initializable {
     private TableColumn<Student, String> nameColumn;
     @FXML
     private TableColumn<Student, Integer> absenceColumn;
+    @FXML
+    private ComboBox<Class> lstClasses;
 
 
     public ClassAttendanceController(){
@@ -38,10 +42,13 @@ public class ClassAttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allStudents = teacherModel.getAllStudents();
+        allClasses = teacherModel.getAllClasses();
 
         lstAllStudents.setItems(allStudents);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         absenceColumn.setCellValueFactory(new PropertyValueFactory<>("Absence"));
+
+        lstClasses.setItems(allClasses);
     }
 
     @FXML

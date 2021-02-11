@@ -29,7 +29,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="26.0" layoutY="125.0" prefHeight="25.0" prefWidth="111.0" />
-      <Text layoutX="28.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose period" />
+      <ChoiceBox fx:id="lstClasses" layoutX="26.0" layoutY="125.0" prefHeight="25.0" prefWidth="111.0" />
+      <Text layoutX="28.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose class" />
    </children>
 </AnchorPane>

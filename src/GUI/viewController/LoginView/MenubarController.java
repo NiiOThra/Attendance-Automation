@@ -33,7 +33,7 @@ public class MenubarController {
     @FXML
     public void prototypeTeacherView()
     {
-        startTeacherView("/GUI/viewController/TeacherView/TeacherClassesView.fxml");
+        startTeacherView("/GUI/viewController/TeacherView/ClassAttendanceView.fxml");
     }
 
     public void startTeacherView(String fxmlPath) {
