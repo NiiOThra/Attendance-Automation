@@ -13,5 +13,6 @@
     <orderEntry type="library" name="javax.xml.bind:jaxb-api:2.4.0-b180830.0359" level="project" />
     <orderEntry type="library" name="org.openjfx:javafx-fxml:12-ea+6" level="project" />
     <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="com.jfoenix:jfoenix:9.0.10" level="project" />
   </component>
 </module>
