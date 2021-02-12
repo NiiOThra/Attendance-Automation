@@ -14,10 +14,18 @@ public class AttendanceManager {
         DALManager = new DALManager();
     }
 
+    /**
+     * Gets a list of all the students from the DALManager.
+     * @return the list of all students.
+     */
     public List<Student> getAllStudents(){
         return DALManager.getAllStudents();
     }
 
+    /**
+     * Gets a list of all the classes from the DALManager.
+     * @return the list of students.
+     */
     public List<Class> getAllClasses(){
         return DALManager.getAllClasses();
     }

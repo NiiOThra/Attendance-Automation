@@ -13,7 +13,10 @@ public class TeacherModel {
     private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
 
-
+    /**
+     * The constructor of the model class. Creating all the observable
+     * arraylists and adding data to the lists.
+     */
     public TeacherModel(){
         attendanceManager = new AttendanceManager();
 
@@ -24,10 +27,18 @@ public class TeacherModel {
         allClasses.addAll(attendanceManager.getAllClasses());
     }
 
+    /**
+     * Gets a list of students.
+     * @return the list of students.
+     */
     public ObservableList<Student> getAllStudents() {
         return allStudents;
     }
 
+    /**
+     * Gets a list of all classes.
+     * @return the list of students.
+     */
     public ObservableList<Class> getAllClasses(){
         return allClasses;
     }

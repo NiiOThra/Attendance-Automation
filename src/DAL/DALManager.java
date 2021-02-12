@@ -9,6 +9,10 @@ import java.util.List;
 public class DALManager {
 
 
+    /**
+     * Creating a bunch of students and adds them to an arraylist.
+     * @return the list of all students.
+     */
     public List<Student> getAllStudents(){
         List<Student> allStudents = new ArrayList<>();
 
@@ -25,6 +29,10 @@ public class DALManager {
         return allStudents;
     }
 
+    /**
+     * Creating some classes and adds them to an arraylist.
+     * @return the list of all classes.
+     */
     public List<Class> getAllClasses() {
         List<Class> allClasses = new ArrayList<>();
 
