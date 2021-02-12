@@ -3,12 +3,15 @@ package GUI.viewController.TeacherView;
 import BE.Class;
 import BE.Student;
 import GUI.Model.TeacherModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,6 +25,7 @@ import java.util.ResourceBundle;
 public class ClassAttendanceController implements Initializable {
 
     private TeacherModel teacherModel;
+
     private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
 
@@ -30,10 +34,11 @@ public class ClassAttendanceController implements Initializable {
     @FXML
     private TableColumn<Student, String> nameColumn;
     @FXML
-    private TableColumn<Student, Integer> absenceColumn;
+    private TableColumn<Student, Integer> attendanceColumn;
     @FXML
     private ComboBox<Class> lstClasses;
-
+    @FXML
+    private PieChart pieChart;
 
     public ClassAttendanceController(){
         teacherModel = new TeacherModel();
@@ -44,11 +49,26 @@ public class ClassAttendanceController implements Initializable {
         allStudents = teacherModel.getAllStudents();
         allClasses = teacherModel.getAllClasses();
 
+
         lstAllStudents.setItems(allStudents);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        absenceColumn.setCellValueFactory(new PropertyValueFactory<>("Absence"));
+        attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
 
         lstClasses.setItems(allClasses);
+
+        ObservableList<PieChart.Data> pieCharData = FXCollections.observableArrayList(
+                new PieChart.Data("Doria BulFord", 66),
+                new PieChart.Data("Regen Hearson", 50),
+                new PieChart.Data("Bruis Hazlegrove", 100),
+                new PieChart.Data("Elisa Hammerberger", 100),
+                new PieChart.Data("Binni Crankshaw", 90),
+                new PieChart.Data("Lexy Davion", 95),
+                new PieChart.Data("Kellsie Goodburn", 85),
+                new PieChart.Data("Worth Velasquez", 75),
+                new PieChart.Data("Dalli Burnie", 100)
+        );
+        pieChart.setTitle("Attendance for SCO");
+        pieChart.setData(pieCharData);
     }
 
     @FXML

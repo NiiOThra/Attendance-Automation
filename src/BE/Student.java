@@ -4,13 +4,13 @@ public class Student {
 
     private int studentID;
     private String name;
-    private int absence;
+    private int attendance;
 
 
-    public Student(int studentID, String name, int absence) {
+    public Student(int studentID, String name, int attendance) {
         this.studentID = studentID;
         this.name = name;
-        this.absence = absence;
+        this.attendance = attendance;
     }
 
     public int getId(){
@@ -25,9 +25,8 @@ public class Student {
         this.name = name;
     }
 
-    public int getAbsence(){
-        return absence;
+    public int getAttendance(){
+        return attendance;
     }
-
 
 }
