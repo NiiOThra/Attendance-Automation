@@ -4,13 +4,13 @@ package GUI.viewController.TeacherView;
 import BE.Class;
 import GUI.Model.TeacherModel;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.*;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
@@ -41,43 +41,41 @@ public class SpecificStudentAttendanceController implements Initializable {
         lstClasses.getSelectionModel().select(0);
 
         lstView.getItems().add("Whole semester");
-        lstView.getItems().add("Weekly");
+        lstView.getItems().add("Weekdays");
 
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+        XYChart.Series<String, Number> semesterSeries = new XYChart.Series<>();
+        XYChart.Series<String, Number> weekDaysSeries = new XYChart.Series<>();
         Axis<String> xAxis = lineChart.getXAxis();
         Axis<Number> yAxis = lineChart.getYAxis();
 
         lstView.setOnAction(event -> {
-            int selectedIndex = lstView.getSelectionModel().getSelectedIndex();
-            if (selectedIndex == 0) {
-                series2.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+            int selectedIndexView = lstView.getSelectionModel().getSelectedIndex();
+            if (selectedIndexView == 0) {
+                weekDaysSeries.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Month");
                 yAxis.setLabel("Attendance %");
 
-                series.setName("Attendance for the whole semester");
-                series.getData().add(new XYChart.Data<>("September", 100));
-                series.getData().add(new XYChart.Data<>("October", 80));
-                series.getData().add(new XYChart.Data<>("November", 95));
-                series.getData().add(new XYChart.Data<>("December", 70));
-                lineChart.getData().add(series);
-            } else if(selectedIndex == 1) {
-                series.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+                semesterSeries.setName("Attendance for the whole semester");
+                semesterSeries.getData().add(new XYChart.Data<>("September", 100));
+                semesterSeries.getData().add(new XYChart.Data<>("October", 80));
+                semesterSeries.getData().add(new XYChart.Data<>("November", 95));
+                semesterSeries.getData().add(new XYChart.Data<>("December", 70));
+                lineChart.getData().add(semesterSeries);
+            } else if(selectedIndexView == 1) {
+                semesterSeries.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Day");
                 yAxis.setLabel("Attendance %");
 
-                series2.setName("Attendance daily");
-                series2.getData().add(new XYChart.Data<>("Monday", 50));
-                series2.getData().add(new XYChart.Data<>("Tuesday", 90));
-                series2.getData().add(new XYChart.Data<>("Wednesday", 70));
-                series2.getData().add(new XYChart.Data<>("Thursday", 98));
-                series2.getData().add(new XYChart.Data<>("Friday", 99));
-                lineChart.getData().add(series2);
+                weekDaysSeries.setName("Attendance weekdays");
+                weekDaysSeries.getData().add(new XYChart.Data<>("Monday", 50));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Tuesday", 90));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Wednesday", 70));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Thursday", 98));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Friday", 99));
+                lineChart.getData().add(weekDaysSeries);
             }
         });
-
-
     }
 }

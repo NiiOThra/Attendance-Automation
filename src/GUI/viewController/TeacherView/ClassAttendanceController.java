@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,7 +36,7 @@ public class ClassAttendanceController implements Initializable {
     @FXML
     private TableColumn<Student, Integer> attendanceColumn;
     @FXML
-    private ComboBox<Class> lstClasses;
+    private ChoiceBox<Class> lstClasses;
     @FXML
     private PieChart pieChart;
 
