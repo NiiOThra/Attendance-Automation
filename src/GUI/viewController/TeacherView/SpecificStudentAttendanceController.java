@@ -66,7 +66,7 @@ public class SpecificStudentAttendanceController implements Initializable {
                 series.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Day");
-                xAxis.setLabel("Attendance %");
+                yAxis.setLabel("Attendance %");
 
                 series2.setName("Attendance daily");
                 series2.getData().add(new XYChart.Data<>("Monday", 50));
