@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,14 +16,6 @@
       <CheckBox layoutX="40.0" layoutY="313.0" mnemonicParsing="false" text="Thursday" />
       <CheckBox layoutX="40.0" layoutY="341.0" mnemonicParsing="false" text="Friday" />
       <CheckBox layoutX="40.0" layoutY="226.0" mnemonicParsing="false" text="Monday" />
-      <StackedBarChart layoutX="135.0" layoutY="108.0" prefHeight="292.0" prefWidth="460.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </StackedBarChart>
       <Text layoutX="182.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on student" underline="true" wrappingWidth="365.13671875">
          <font>
             <Font name="System Bold Italic" size="18.0" />
@@ -31,5 +23,13 @@
       </Text>
       <ChoiceBox fx:id="lstClasses" layoutX="26.0" layoutY="125.0" prefHeight="25.0" prefWidth="111.0" />
       <Text layoutX="28.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose class" />
+      <LineChart fx:id="lineChart" layoutX="147.0" layoutY="78.0" prefHeight="322.0" prefWidth="449.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>
