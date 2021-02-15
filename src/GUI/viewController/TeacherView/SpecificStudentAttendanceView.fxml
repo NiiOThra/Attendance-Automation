@@ -3,7 +3,6 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -11,12 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.viewController.TeacherView.SpecificStudentAttendanceController">
    <children>
-      <CheckBox layoutX="40.0" layoutY="256.0" mnemonicParsing="false" text="Tuesday" />
-      <CheckBox layoutX="40.0" layoutY="286.0" mnemonicParsing="false" text="Wednesday" />
-      <CheckBox layoutX="40.0" layoutY="313.0" mnemonicParsing="false" text="Thursday" />
-      <CheckBox layoutX="40.0" layoutY="341.0" mnemonicParsing="false" text="Friday" />
-      <CheckBox layoutX="40.0" layoutY="226.0" mnemonicParsing="false" text="Monday" />
-      <Text layoutX="182.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on student" underline="true" wrappingWidth="365.13671875">
+      <Text layoutX="137.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on student" underline="true" wrappingWidth="365.13671875">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -31,5 +25,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
+      <ChoiceBox fx:id="lstView" layoutX="26.0" layoutY="212.0" prefHeight="26.0" prefWidth="111.0" />
+      <Text layoutX="28.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose view" wrappingWidth="82.66717529296875" />
    </children>
 </AnchorPane>
