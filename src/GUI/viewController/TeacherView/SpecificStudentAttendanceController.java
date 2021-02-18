@@ -22,9 +22,9 @@ public class SpecificStudentAttendanceController implements Initializable {
     ObservableList<Class> allClasses;
 
     @FXML
-    private ChoiceBox<Class> lstClasses;
-    @FXML
     ChoiceBox<String> lstView;
+    @FXML
+    ChoiceBox<Class> lstClasses;
     @FXML
     private LineChart<String, Number> lineChart;
 
@@ -36,15 +36,18 @@ public class SpecificStudentAttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allClasses = teacherModel.getAllClasses();
-
         lstClasses.setItems(allClasses);
-        lstClasses.getSelectionModel().select(0);
 
         lstView.getItems().add("Whole semester");
         lstView.getItems().add("Weekdays");
 
-        XYChart.Series<String, Number> semesterSeries = new XYChart.Series<>();
+        XYChart.Series<String, Number> semesterSeriesITO = new XYChart.Series<>();
+        XYChart.Series<String, Number> semesterSeriesSCO = new XYChart.Series<>();
+        XYChart.Series<String, Number> semesterSeriesSDE = new XYChart.Series<>();
+        XYChart.Series<String, Number> semesterSeriesDBOS = new XYChart.Series<>();
+
         XYChart.Series<String, Number> weekDaysSeries = new XYChart.Series<>();
+
         Axis<String> xAxis = lineChart.getXAxis();
         Axis<Number> yAxis = lineChart.getYAxis();
 
@@ -56,24 +59,49 @@ public class SpecificStudentAttendanceController implements Initializable {
                 xAxis.setLabel("Month");
                 yAxis.setLabel("Attendance %");
 
-                semesterSeries.setName("Attendance for the whole semester");
-                semesterSeries.getData().add(new XYChart.Data<>("September", 100));
-                semesterSeries.getData().add(new XYChart.Data<>("October", 80));
-                semesterSeries.getData().add(new XYChart.Data<>("November", 95));
-                semesterSeries.getData().add(new XYChart.Data<>("December", 70));
-                lineChart.getData().add(semesterSeries);
+                semesterSeriesITO.setName("ITO");
+                semesterSeriesITO.getData().add(new XYChart.Data<>("September", 100));
+                semesterSeriesITO.getData().add(new XYChart.Data<>("October", 80));
+                semesterSeriesITO.getData().add(new XYChart.Data<>("November", 95));
+                semesterSeriesITO.getData().add(new XYChart.Data<>("December", 70));
+                lineChart.getData().add(semesterSeriesITO);
+
+                semesterSeriesSCO.setName("SCO");
+                semesterSeriesSCO.getData().add(new XYChart.Data<>("September", 40));
+                semesterSeriesSCO.getData().add(new XYChart.Data<>("October", 50));
+                semesterSeriesSCO.getData().add(new XYChart.Data<>("November", 60));
+                semesterSeriesSCO.getData().add(new XYChart.Data<>("December", 20));
+                lineChart.getData().add(semesterSeriesSCO);
+
+                semesterSeriesSDE.setName("SDE");
+                semesterSeriesSDE.getData().add(new XYChart.Data<>("September", 90));
+                semesterSeriesSDE.getData().add(new XYChart.Data<>("October", 68));
+                semesterSeriesSDE.getData().add(new XYChart.Data<>("November", 88));
+                semesterSeriesSDE.getData().add(new XYChart.Data<>("December", 100));
+                lineChart.getData().add(semesterSeriesSDE);
+
+                semesterSeriesDBOS.setName("DBOS");
+                semesterSeriesDBOS.getData().add(new XYChart.Data<>("September", 67));
+                semesterSeriesDBOS.getData().add(new XYChart.Data<>("October", 44));
+                semesterSeriesDBOS.getData().add(new XYChart.Data<>("November", 90));
+                semesterSeriesDBOS.getData().add(new XYChart.Data<>("December", 98));
+                lineChart.getData().add(semesterSeriesDBOS);
+
             } else if(selectedIndexView == 1) {
-                semesterSeries.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+                semesterSeriesITO.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+                semesterSeriesSCO.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+                semesterSeriesSDE.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
+                semesterSeriesDBOS.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Day");
                 yAxis.setLabel("Attendance %");
 
-                weekDaysSeries.setName("Attendance weekdays");
-                weekDaysSeries.getData().add(new XYChart.Data<>("Monday", 50));
-                weekDaysSeries.getData().add(new XYChart.Data<>("Tuesday", 90));
-                weekDaysSeries.getData().add(new XYChart.Data<>("Wednesday", 70));
-                weekDaysSeries.getData().add(new XYChart.Data<>("Thursday", 98));
-                weekDaysSeries.getData().add(new XYChart.Data<>("Friday", 99));
+                weekDaysSeries.setName("Attendance for weekdays");
+                weekDaysSeries.getData().add(new XYChart.Data<>("Monday", 90));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Tuesday", 88));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Wednesday", 100));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Thursday", 30));
+                weekDaysSeries.getData().add(new XYChart.Data<>("Friday", 95));
                 lineChart.getData().add(weekDaysSeries);
             }
         });

@@ -4,20 +4,19 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.viewController.TeacherView.SpecificStudentAttendanceController">
    <children>
-      <Text layoutX="137.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on student" underline="true" wrappingWidth="365.13671875">
+      <Text layoutX="204.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elisa Hammerberger" underline="true" wrappingWidth="192.336669921875">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="lstClasses" layoutX="26.0" layoutY="125.0" prefHeight="25.0" prefWidth="111.0" />
-      <Text layoutX="28.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose class" />
-      <LineChart fx:id="lineChart" layoutX="147.0" layoutY="78.0" prefHeight="322.0" prefWidth="449.0">
+      <LineChart fx:id="lineChart" layoutX="102.0" layoutY="65.0" prefHeight="330.0" prefWidth="396.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -25,7 +24,9 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <ChoiceBox fx:id="lstView" layoutX="26.0" layoutY="212.0" prefHeight="26.0" prefWidth="111.0" />
-      <Text layoutX="28.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose view" wrappingWidth="82.66717529296875" />
+      <ChoiceBox fx:id="lstView" layoutX="8.0" layoutY="140.0" prefHeight="26.0" prefWidth="102.0" />
+      <Text layoutX="8.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose view" wrappingWidth="82.66717529296875" />
+      <ChoiceBox fx:id="lstClasses" layoutX="8.0" layoutY="83.0" prefHeight="26.0" prefWidth="102.0" />
+      <Label layoutX="8.0" layoutY="65.0" text="Choose class" />
    </children>
 </AnchorPane>
