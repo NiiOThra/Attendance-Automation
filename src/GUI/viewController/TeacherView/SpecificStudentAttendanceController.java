@@ -28,13 +28,10 @@ public class SpecificStudentAttendanceController implements Initializable {
     @FXML
     private LineChart<String, Number> lineChart;
 
-    public SpecificStudentAttendanceController(){
-        teacherModel = new TeacherModel();
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        teacherModel = new TeacherModel();
+
         allClasses = teacherModel.getAllClasses();
         lstClasses.setItems(allClasses);
 
@@ -51,13 +48,14 @@ public class SpecificStudentAttendanceController implements Initializable {
         Axis<String> xAxis = lineChart.getXAxis();
         Axis<Number> yAxis = lineChart.getYAxis();
 
+        yAxis.setLabel("Attendance %");
+
         lstView.setOnAction(event -> {
             int selectedIndexView = lstView.getSelectionModel().getSelectedIndex();
             if (selectedIndexView == 0) {
                 weekDaysSeries.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Month");
-                yAxis.setLabel("Attendance %");
 
                 semesterSeriesITO.setName("ITO");
                 semesterSeriesITO.getData().add(new XYChart.Data<>("September", 100));
@@ -94,7 +92,6 @@ public class SpecificStudentAttendanceController implements Initializable {
                 semesterSeriesDBOS.getData().removeAll(Collections.singleton(lineChart.getData().setAll()));
 
                 xAxis.setLabel("Day");
-                yAxis.setLabel("Attendance %");
 
                 weekDaysSeries.setName("Attendance for weekdays");
                 weekDaysSeries.getData().add(new XYChart.Data<>("Monday", 90));

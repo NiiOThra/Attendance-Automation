@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.viewController.StudentView.AttendanceController">
    <children>
       <MenuBar prefHeight="29.0" prefWidth="800.0">
         <menus>
@@ -23,16 +26,36 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ComboBox layoutX="275.0" layoutY="109.0" prefHeight="25.0" prefWidth="203.0" promptText="Day/All attendance" />
-      <ComboBox layoutX="38.0" layoutY="109.0" prefHeight="25.0" prefWidth="203.0" promptText="Course" />
-      <Button layoutX="523.0" layoutY="152.0" mnemonicParsing="false" prefHeight="227.0" prefWidth="233.0" text="Checkin for today!" />
       <Button layoutX="523.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Request for attendance update" />
-      <Text layoutX="38.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frederik Alexander Mørch" wrappingWidth="723.681640625">
+      <Text layoutX="38.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frederik Alexander Mørch " wrappingWidth="723.681640625">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <PieChart layoutX="38.0" layoutY="152.0" prefHeight="422.0" prefWidth="440.0" style="-fx-background-color: blue;" title="Chart 2" />
-      <Button layoutX="523.0" layoutY="549.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Close application.." />
+      <PieChart fx:id="pieChart" layoutX="38.0" layoutY="152.0" prefHeight="422.0" prefWidth="440.0" style="-fx-background-color: lightblue;" title="Chart 2" />
+      <JFXComboBox fx:id="lstClasses" layoutX="538.0" layoutY="109.0" prefHeight="26.0" prefWidth="203.0" promptText="Choose class!">
+         <unFocusColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </unFocusColor></JFXComboBox>
+      <JFXComboBox fx:id="lstView" layoutX="156.0" layoutY="109.0" onAction="#handleChooseView" prefHeight="26.0" prefWidth="203.0">
+         <unFocusColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </unFocusColor>
+      </JFXComboBox>
+      <Button fx:id="checkInBtn" layoutX="523.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="234.0" prefWidth="234.0" text="Choose a class and check in!" />
+      <Button layoutX="523.0" layoutY="547.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="234.0" text="Close application.." />
    </children>
+   <effect>
+      <InnerShadow />
+   </effect>
 </AnchorPane>

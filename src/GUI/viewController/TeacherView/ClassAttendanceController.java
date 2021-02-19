@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -97,10 +96,10 @@ public class ClassAttendanceController implements Initializable {
         }
     }
 
-    @FXML
     public void getSpecificStudentInfo(){
         showSpecificStudentInfo("/GUI/viewController/TeacherView/SpecificStudentAttendanceView.fxml");
     }
+
     public void showSpecificStudentInfo(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader();
