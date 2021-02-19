@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/viewController/LoginView/LoginView.fxml"));
         primaryStage.setTitle("Attendance Automation");
         primaryStage.setScene(new Scene(root, 300, 280));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

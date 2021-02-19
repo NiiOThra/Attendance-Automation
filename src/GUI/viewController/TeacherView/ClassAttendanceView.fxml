@@ -17,7 +17,7 @@
           <TableColumn fx:id="attendanceColumn" prefWidth="92.0" text="Attendance %" />
         </columns>
       </TableView>
-      <Button fx:id="checkFurther" layoutX="23.0" layoutY="561.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="70.0" text="Details" />
+      <Button fx:id="checkFurther" layoutX="23.0" layoutY="561.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
       <Text layoutX="23.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course" wrappingWidth="70.0">
          <font>
             <Font size="20.0" />

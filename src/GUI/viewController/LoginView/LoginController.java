@@ -41,6 +41,7 @@ public class LoginController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Attendance Automation: logged in as student");
             stage.setScene(new Scene(mainLayout));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,6 +62,7 @@ public class LoginController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Attendance Automation: logged in as teacher");
             stage.setScene(new Scene(mainLayout));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

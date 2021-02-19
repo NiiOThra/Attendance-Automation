@@ -109,6 +109,7 @@ public class ClassAttendanceController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Attendance Automation: student details");
             stage.setScene(new Scene(mainLayout));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
