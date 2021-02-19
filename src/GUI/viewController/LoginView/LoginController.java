@@ -39,6 +39,7 @@ public class LoginController implements Initializable {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             Stage stage = new Stage();
+            stage.setTitle("Attendance Automation: logged in as student");
             stage.setScene(new Scene(mainLayout));
             stage.show();
         } catch (IOException e) {
@@ -58,6 +59,7 @@ public class LoginController implements Initializable {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             Stage stage = new Stage();
+            stage.setTitle("Attendance Automation: logged in as teacher");
             stage.setScene(new Scene(mainLayout));
             stage.show();
         } catch (IOException e) {

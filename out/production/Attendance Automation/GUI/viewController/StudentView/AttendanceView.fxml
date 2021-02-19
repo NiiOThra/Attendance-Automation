@@ -10,38 +10,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0"
-            prefWidth="536.0" xmlns="http://javafx.com/javafx/15.0.1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar prefHeight="29.0" prefWidth="536.0">
+      <MenuBar prefHeight="29.0" prefWidth="800.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Options">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Help" />
+                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Close application" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <ComboBox layoutX="36.0" layoutY="131.0" prefHeight="25.0" prefWidth="213.0" promptText="Day/All attendance" />
-      <ComboBox layoutX="36.0" layoutY="93.0" prefHeight="25.0" prefWidth="213.0" promptText="Class" />
-      <PieChart layoutX="36.0" layoutY="176.0" prefHeight="190.0" prefWidth="213.0" style="-fx-background-color: red;" title="Chart 1" />
-      <PieChart layoutX="284.0" layoutY="176.0" prefHeight="190.0" prefWidth="213.0" style="-fx-background-color: blue;" title="Chart 2" />
-      <Button layoutX="284.0" layoutY="93.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="213.0" text="Checkin for today!" />
-      <Button layoutX="284.0" layoutY="131.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="213.0" text="Request for attendance update" />
-      <Text layoutX="197.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance">
+      <ComboBox layoutX="251.0" layoutY="125.0" prefHeight="25.0" prefWidth="181.0" promptText="Day/All attendance" />
+      <ComboBox layoutX="32.0" layoutY="125.0" prefHeight="25.0" prefWidth="181.0" promptText="Course" />
+      <Button layoutX="494.0" layoutY="174.0" mnemonicParsing="false" prefHeight="227.0" prefWidth="233.0" text="Checkin for today!" />
+      <Button layoutX="494.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Request for attendance update" />
+      <Text layoutX="32.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frederik Alexander Mørch" wrappingWidth="723.681640625">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
+      <PieChart layoutX="32.0" layoutY="174.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: blue;" title="Chart 2" />
+      <Button layoutX="494.0" layoutY="549.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Close application.." />
    </children>
 </AnchorPane>

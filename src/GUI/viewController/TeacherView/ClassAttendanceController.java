@@ -107,6 +107,7 @@ public class ClassAttendanceController implements Initializable {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             Stage stage = new Stage();
+            stage.setTitle("Attendance Automation: student details");
             stage.setScene(new Scene(mainLayout));
             stage.show();
         } catch (IOException e) {
