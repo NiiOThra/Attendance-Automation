@@ -23,16 +23,16 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ComboBox layoutX="251.0" layoutY="125.0" prefHeight="25.0" prefWidth="181.0" promptText="Day/All attendance" />
-      <ComboBox layoutX="32.0" layoutY="125.0" prefHeight="25.0" prefWidth="181.0" promptText="Course" />
-      <Button layoutX="494.0" layoutY="174.0" mnemonicParsing="false" prefHeight="227.0" prefWidth="233.0" text="Checkin for today!" />
-      <Button layoutX="494.0" layoutY="422.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Request for attendance update" />
-      <Text layoutX="32.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frederik Alexander Mørch" wrappingWidth="723.681640625">
+      <ComboBox layoutX="275.0" layoutY="109.0" prefHeight="25.0" prefWidth="203.0" promptText="Day/All attendance" />
+      <ComboBox layoutX="38.0" layoutY="109.0" prefHeight="25.0" prefWidth="203.0" promptText="Course" />
+      <Button layoutX="523.0" layoutY="152.0" mnemonicParsing="false" prefHeight="227.0" prefWidth="233.0" text="Checkin for today!" />
+      <Button layoutX="523.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Request for attendance update" />
+      <Text layoutX="38.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frederik Alexander Mørch" wrappingWidth="723.681640625">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
-      <PieChart layoutX="32.0" layoutY="174.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: blue;" title="Chart 2" />
-      <Button layoutX="494.0" layoutY="549.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Close application.." />
+      <PieChart layoutX="38.0" layoutY="152.0" prefHeight="422.0" prefWidth="440.0" style="-fx-background-color: blue;" title="Chart 2" />
+      <Button layoutX="523.0" layoutY="549.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Close application.." />
    </children>
 </AnchorPane>
