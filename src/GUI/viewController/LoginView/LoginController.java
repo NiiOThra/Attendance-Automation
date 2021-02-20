@@ -1,5 +1,6 @@
 package GUI.viewController.LoginView;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,12 +19,12 @@ public class LoginController implements Initializable {
     @FXML
     private JFXTextField userField;
     @FXML
-    private JFXTextField passwordField;
+    private JFXPasswordField passwordField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userField.setText("kell0825@easv365.dk");
-        passwordField.setText("******");
+        passwordField.setText("CODE123");
 
     }
 

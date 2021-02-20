@@ -14,7 +14,7 @@ public class DALManager {
      *
      * @return the list of all students.
      */
-    public List<Student> getAllStudents() {
+    public static List<Student> getAllStudents() {
         List<Student> allStudents = new ArrayList<>();
 
         allStudents.add(new Student(1, "Doria Bulford", 50));

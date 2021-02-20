@@ -1,6 +1,8 @@
 package BE;
 
-public class Student {
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
+public class Student extends RecursiveTreeObject<Student> {
 
     private int studentID;
     private String name;

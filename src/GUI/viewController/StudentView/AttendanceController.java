@@ -3,8 +3,9 @@ package GUI.viewController.StudentView;
 
 import BE.Class;
 import GUI.Model.TeacherModel;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,17 +32,27 @@ public class AttendanceController implements Initializable {
     private JFXComboBox<String> lstView;
     @FXML
     private PieChart pieChart;
-
+    @FXML
+    private Label percLbl;
+    @FXML
+    private JFXListView lstAbsenceDays;
+    @FXML
+    private Button updateBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         teacherModel = new TeacherModel();
 
         allClasses = teacherModel.getAllClasses();
-
         lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");
+
+        lstAbsenceDays.getItems().add("ITO - 24-9-2020");
+        lstAbsenceDays.getItems().add("ITO - 8-10-2020");
+        lstAbsenceDays.getItems().add("SDE - 9-10-2020");
+        lstAbsenceDays.getItems().add("DBOS - 10-10-2020");
+        lstAbsenceDays.getItems().add("SCO 5-12-2020");
     }
 
     public void handleCheckIn(ActionEvent event) {
@@ -57,6 +69,7 @@ public class AttendanceController implements Initializable {
         int selectedView = lstView.getSelectionModel().getSelectedIndex();
 
         if (selectedView == 0){
+            percLbl.setText("Absence for this semester: 4%");
             getPieChart();
         }
     }
@@ -73,6 +86,13 @@ public class AttendanceController implements Initializable {
         pieChart.setTitle("Attendance for the semester");
     }
 
-    
+    public void handleCloseApp(ActionEvent event){
+        Platform.exit();
+    }
 
+    public void handleUpdateAtt(ActionEvent event){
+        Object selectedAb = lstAbsenceDays.getSelectionModel().getSelectedItem();
+
+        updateBtn.setText("Request to update " + selectedAb + ": sent");
+    }
 }
