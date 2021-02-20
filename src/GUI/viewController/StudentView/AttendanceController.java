@@ -6,6 +6,7 @@ import GUI.Model.TeacherModel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,6 +85,9 @@ public class AttendanceController implements Initializable {
 
         pieChart.setData(pieChartSmst);
         pieChart.setTitle("Attendance for the semester");
+
+        pieChartSmst.forEach(data ->
+                data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
     }
 
     public void handleCloseApp(ActionEvent event){

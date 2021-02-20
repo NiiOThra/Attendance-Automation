@@ -35,7 +35,7 @@ public class DALManager {
      *
      * @return the list of all classes.
      */
-    public List<Class> getAllClasses() {
+    public static List<Class> getAllClasses() {
         List<Class> allClasses = new ArrayList<>();
 
         allClasses.add(new Class(1, "ITO", "09:00-11:15"));
