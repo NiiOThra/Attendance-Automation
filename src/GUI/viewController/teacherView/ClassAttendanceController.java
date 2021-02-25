@@ -1,8 +1,8 @@
-package GUI.viewController.TeacherView;
+package GUI.viewController.teacherView;
 
 import BE.Class;
 import BE.Student;
-import GUI.Model.TeacherModel;
+import GUI.model.TeacherModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -103,7 +103,7 @@ public class ClassAttendanceController implements Initializable {
     }
 
     public void getSpecificStudentInfo(){
-        showSpecificStudentInfo("/GUI/viewController/TeacherView/SpecificStudentAttendanceView.fxml");
+        showSpecificStudentInfo("/GUI/viewController/teacherView/SpecificStudentAttendanceView.fxml");
     }
 
     public void showSpecificStudentInfo(String fxmlPath) {

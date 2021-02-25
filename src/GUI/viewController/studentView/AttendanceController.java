@@ -1,8 +1,8 @@
-package GUI.viewController.StudentView;
+package GUI.viewController.studentView;
 
 
 import BE.Class;
-import GUI.Model.TeacherModel;
+import GUI.model.TeacherModel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;

@@ -1,4 +1,4 @@
-package GUI.viewController.LoginView;
+package GUI.viewController.loginView;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -25,12 +25,11 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userField.setText("kell0825@easv365.dk");
         passwordField.setText("CODE123");
-
     }
 
     @FXML
-    public void prototypeStudentView(ActionEvent event){
-        startStudentView("/GUI/viewController/StudentView/AttendanceView.fxml");
+    private void handleStudentView(ActionEvent event){
+        startStudentView("/GUI/viewController/studentView/AttendanceView.fxml");
     }
 
     public void startStudentView(String fxmlPath) {
@@ -49,9 +48,9 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void prototypeTeacherView()
+    private void handleTeacherView(ActionEvent event)
     {
-        startTeacherView("/GUI/viewController/TeacherView/ClassAttendanceView.fxml");
+        startTeacherView("/GUI/viewController/teacherView/ClassAttendanceView.fxml");
     }
 
     public void startTeacherView(String fxmlPath) {

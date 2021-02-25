@@ -1,4 +1,4 @@
-package GUI.Model;
+package GUI.model;
 
 import BE.Class;
 import BE.Student;

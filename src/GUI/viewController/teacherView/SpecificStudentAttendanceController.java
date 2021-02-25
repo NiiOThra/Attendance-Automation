@@ -1,8 +1,8 @@
-package GUI.viewController.TeacherView;
+package GUI.viewController.teacherView;
 
 
 import BE.Class;
-import GUI.Model.TeacherModel;
+import GUI.model.TeacherModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

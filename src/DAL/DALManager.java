@@ -6,7 +6,7 @@ import BE.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DALManager {
+public class DALManager{
 
 
     /**
