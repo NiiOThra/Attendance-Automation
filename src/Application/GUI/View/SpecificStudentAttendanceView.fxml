@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.net.URL?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="vBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.SpecificStudentAttendanceController">
+   <stylesheets>
+      <URL value="@../CSS/styleClass.css" />
+   </stylesheets>
+   <children>
+      <Text layoutX="277.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elisa Hammerberger" underline="true" wrappingWidth="245.1365966796875">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Text>
+      <LineChart fx:id="lineChart" layoutX="182.0" layoutY="59.0" prefHeight="527.0" prefWidth="604.0" style="-fx-background-color: lightblue;">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis prefHeight="467.0" prefWidth="27.0" side="LEFT" tickLabelGap="5.0" tickLength="5.0" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="17.0" layoutY="184.0" text="Choose view" textFill="WHITE" />
+      <Label layoutX="17.0" layoutY="258.0" prefHeight="58.0" prefWidth="142.0" text="Total absence is 16%" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <JFXComboBox fx:id="lstView" focusColor="WHITE" layoutX="17.0" layoutY="202.0" onAction="#handleShowChart" prefHeight="26.0" prefWidth="142.0">
+         <unFocusColor>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#b4c3ef" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </unFocusColor>
+      </JFXComboBox>
+      <JFXComboBox fx:id="lstClasses" focusColor="WHITE" layoutX="17.0" layoutY="136.0" prefHeight="26.0" prefWidth="142.0">
+         <unFocusColor>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#b4c3ef" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </unFocusColor>
+      </JFXComboBox>
+      <Label layoutX="21.0" layoutY="119.0" text="Choose course" textFill="WHITE" />
+   </children>
+</AnchorPane>
