@@ -1,0 +1,4 @@
+server = 10.176.111.31
+database = AttendanceAutomationFMM
+username = CSe20A_21
+password = CSe20A_21

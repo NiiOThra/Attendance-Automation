@@ -2,7 +2,7 @@ package Application.BLL;
 
 import Application.BE.Class;
 import Application.BE.Student;
-import Application.DAL.DALManager;
+import Application.DAL.mock.DALManager;
 
 import java.util.List;
 

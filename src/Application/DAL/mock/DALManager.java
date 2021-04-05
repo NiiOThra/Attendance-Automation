@@ -1,4 +1,4 @@
-package Application.DAL;
+package Application.DAL.mock;
 
 import Application.BE.Class;
 import Application.BE.Student;
