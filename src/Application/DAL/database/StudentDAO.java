@@ -20,10 +20,10 @@ public class StudentDAO {
 
     public Student getStudentData(String username, String password) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
-            String query = "SELECT Full_name, Persons.ID, Persons.[Type], Persons.LoginID " +
+            String query = "SELECT Name, Persons.Id, Persons.[Type], Persons.LoginId " +
                     "FROM Persons " +
                     "INNER JOIN " +
-                    "LoginInformation ON Persons.LoginID = LoginInformation.ID WHERE Username = ? AND [Password] = ?";
+                    "LoginInformation ON Persons.LoginId = LoginInformation.Id WHERE Username = ? AND [Password] = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
             st.setString(2, password);
@@ -32,10 +32,10 @@ public class StudentDAO {
             ResultSet rs = st.getResultSet();
             Student stud = null;
             while (rs.next()) {
-                int id = rs.getInt("ID");
-                String name = rs.getString("Full_name");
+                int id = rs.getInt("Id");
+                String name = rs.getString("Name");
                 int type = rs.getInt("Type");
-                int loginID = rs.getInt("LoginID");
+                int loginID = rs.getInt("LoginId");
                 stud = new Student(id, name);
             }
             return stud;
