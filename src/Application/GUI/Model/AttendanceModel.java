@@ -6,18 +6,22 @@ import Application.BLL.AttendanceManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class TeacherModel {
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class AttendanceModel {
 
     private final AttendanceManager attendanceManager;
 
     private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
+    Student loggedInStudent = null;
 
     /**
      * The constructor of the model class. Creating all the observable
      * arraylists and adding data to the lists.
      */
-    public TeacherModel(){
+    public AttendanceModel() throws IOException, SQLException {
         attendanceManager = new AttendanceManager();
 
         allStudents = FXCollections.observableArrayList();
@@ -41,5 +45,14 @@ public class TeacherModel {
      */
     public ObservableList<Class> getAllClasses(){
         return allClasses;
+    }
+
+    public Student logInStudent(String userName, String password) throws SQLException {
+        loggedInStudent = attendanceManager.getStudentData(userName, password);
+        return loggedInStudent;
+    }
+
+    public Student getLoggedinStudent(){
+        return loggedInStudent;
     }
 }

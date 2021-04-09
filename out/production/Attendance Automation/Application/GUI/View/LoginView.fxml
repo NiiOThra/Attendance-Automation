@@ -33,17 +33,7 @@
             <Insets left="80.0" right="80.0" />
          </VBox.margin>
       </JFXPasswordField>
-      <Label text="Prototype login">
-         <VBox.margin>
-            <Insets left="250.0" top="30.0" />
-         </VBox.margin>
-      </Label>
-      <Button mnemonicParsing="false" onAction="#handleTeacherView" text="Teacher">
-         <VBox.margin>
-            <Insets left="265.0" />
-         </VBox.margin>
-      </Button>
-      <Button mnemonicParsing="false" onAction="#handleStudentView" text="Student">
+      <Button mnemonicParsing="false" onAction="#handleStudentView" text="Login">
          <VBox.margin>
             <Insets left="265.0" top="10.0" />
          </VBox.margin>

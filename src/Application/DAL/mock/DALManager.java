@@ -17,15 +17,15 @@ public class DALManager{
     public static List<Student> getAllStudents() {
         List<Student> allStudents = new ArrayList<>();
 
-        allStudents.add(new Student(1, "Doria Bulford", 50));
-        allStudents.add(new Student(2, "Regen Hearson", 100));
-        allStudents.add(new Student(3, "Bruis Hazlegrove", 96));
-        allStudents.add(new Student(4, "Elisa Hammerberger", 84));
-        allStudents.add(new Student(5, "Binni Crankshaw", 55));
-        allStudents.add(new Student(6, "Lexy Davion", 90));
-        allStudents.add(new Student(7, "Kellsie Goodburn", 55));
-        allStudents.add(new Student(8, "Worth Velasquez", 88));
-        allStudents.add(new Student(9, "Dalli Burnie", 89));
+        allStudents.add(new Student(1, "Doria Bulford"));
+        allStudents.add(new Student(2, "Regen Hearson"));
+        allStudents.add(new Student(3, "Bruis Hazlegrove"));
+        allStudents.add(new Student(4, "Elisa Hammerberger"));
+        allStudents.add(new Student(5, "Binni Crankshaw"));
+        allStudents.add(new Student(6, "Lexy Davion"));
+        allStudents.add(new Student(7, "Kellsie Goodburn"));
+        allStudents.add(new Student(8, "Worth Velasquez"));
+        allStudents.add(new Student(9, "Dalli Burnie"));
 
         return allStudents;
     }

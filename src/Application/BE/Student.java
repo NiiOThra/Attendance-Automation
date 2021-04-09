@@ -9,10 +9,9 @@ public class Student extends RecursiveTreeObject<Student> {
     private int attendance;
 
 
-    public Student(int studentID, String name, int attendance) {
+    public Student(int studentID, String name) {
         this.studentID = studentID;
         this.name = name;
-        this.attendance = attendance;
     }
 
     public int getId(){

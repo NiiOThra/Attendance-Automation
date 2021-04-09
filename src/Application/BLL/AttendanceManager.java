@@ -2,16 +2,22 @@ package Application.BLL;
 
 import Application.BE.Class;
 import Application.BE.Student;
+import Application.DAL.database.StudentDAO;
 import Application.DAL.mock.DALManager;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class AttendanceManager {
 
     private final DALManager DALManager;
+    private final StudentDAO studentDAO;
 
-    public AttendanceManager(){
+
+    public AttendanceManager() throws IOException, SQLException {
         DALManager = new DALManager();
+        studentDAO = new StudentDAO();
     }
 
     /**
@@ -28,5 +34,9 @@ public class AttendanceManager {
      */
     public List<Class> getAllClasses(){
         return DALManager.getAllClasses();
+    }
+
+    public Student getStudentData(String userName, String password) throws SQLException {
+        return studentDAO.getStudentData(userName, password);
     }
 }

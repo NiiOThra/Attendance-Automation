@@ -2,7 +2,7 @@ package Application.GUI.Controller;
 
 import Application.BE.Class;
 import Application.BE.Student;
-import Application.GUI.Model.TeacherModel;
+import Application.GUI.Model.AttendanceModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -21,11 +21,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ClassAttendanceController implements Initializable {
 
-    private TeacherModel teacherModel;
+    private AttendanceModel attendanceModel;
 
     private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
@@ -41,14 +42,14 @@ public class ClassAttendanceController implements Initializable {
     @FXML
     private PieChart pieChart;
 
-    public ClassAttendanceController(){
-        teacherModel = new TeacherModel();
+    public ClassAttendanceController() throws IOException, SQLException {
+        attendanceModel = new AttendanceModel();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        allStudents = teacherModel.getAllStudents();
-        allClasses = teacherModel.getAllClasses();
+        allStudents = attendanceModel.getAllStudents();
+        allClasses = attendanceModel.getAllClasses();
 
         lstAllStudents.setItems(allStudents);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));

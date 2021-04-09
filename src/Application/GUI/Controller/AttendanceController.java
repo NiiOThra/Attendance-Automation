@@ -2,7 +2,8 @@ package Application.GUI.Controller;
 
 
 import Application.BE.Class;
-import Application.GUI.Model.TeacherModel;
+import Application.BE.Student;
+import Application.GUI.Model.AttendanceModel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
@@ -12,16 +13,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AttendanceController implements Initializable {
 
-    private TeacherModel teacherModel;
+    private AttendanceModel attendanceModel;
 
     private ObservableList<Class> allClasses;
 
@@ -39,12 +44,20 @@ public class AttendanceController implements Initializable {
     private JFXListView lstAbsenceDays;
     @FXML
     private Button updateBtn;
+    @FXML
+    private Label nameField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        teacherModel = new TeacherModel();
+        try {
+            attendanceModel = new AttendanceModel();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-        allClasses = teacherModel.getAllClasses();
+        allClasses = attendanceModel.getAllClasses();
         lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");
@@ -99,4 +112,17 @@ public class AttendanceController implements Initializable {
 
         updateBtn.setText("Request to update " + selectedAb + ": sent");
     }
+
+    @FXML
+    private void receiveData(ActionEvent event){
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        Student stud = (Student) stage.getUserData();
+
+        String name = stud.getName();
+        nameField.setText(name);
+    }
+
+
 }

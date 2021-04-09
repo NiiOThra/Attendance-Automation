@@ -2,7 +2,7 @@ package Application.GUI.Controller;
 
 
 import Application.BE.Class;
-import Application.GUI.Model.TeacherModel;
+import Application.GUI.Model.AttendanceModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,13 +12,15 @@ import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class SpecificStudentAttendanceController implements Initializable {
 
-    private TeacherModel teacherModel;
+    private AttendanceModel attendanceModel;
 
     ObservableList<Class> allClasses;
 
@@ -31,9 +33,15 @@ public class SpecificStudentAttendanceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        teacherModel = new TeacherModel();
+        try {
+            attendanceModel = new AttendanceModel();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-        allClasses = teacherModel.getAllClasses();
+        allClasses = attendanceModel.getAllClasses();
         lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");

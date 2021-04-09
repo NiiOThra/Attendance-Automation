@@ -1,20 +1,26 @@
 package Application.GUI.Controller;
 
+import Application.BE.Student;
+import Application.GUI.Model.AttendanceModel;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    AttendanceModel attendanceModel;
 
     @FXML
     private JFXTextField userField;
@@ -23,8 +29,16 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userField.setText("kell0825@easv365.dk");
-        passwordField.setText("CODE123");
+        userField.setText("scuphus0");
+        passwordField.setText("zs7dCV6Qr");
+
+        try {
+            attendanceModel = new AttendanceModel();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @FXML
@@ -67,4 +81,32 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void setAttendanceModel(AttendanceModel attendanceModel) throws IOException, SQLException {
+        attendanceModel.getLoggedinStudent();
+    }
+
+    @FXML
+    public void handleSendData(ActionEvent event) throws SQLException {
+        Student stud = attendanceModel.logInStudent(userField.getText(), passwordField.getText());
+
+        Node node = (Node) event.getSource();
+
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/view/AttendanceView.FXML"));
+
+            root.setUserData(stud);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
 }
