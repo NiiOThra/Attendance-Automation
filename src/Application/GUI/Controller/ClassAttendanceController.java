@@ -2,7 +2,9 @@ package Application.GUI.Controller;
 
 import Application.BE.Class;
 import Application.BE.Student;
+import Application.BE.Teacher;
 import Application.GUI.Model.AttendanceModel;
+import Application.GUI.Model.LoginModel;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,13 +44,28 @@ public class ClassAttendanceController implements Initializable {
     private JFXComboBox<Class> lstClasses;
     @FXML
     private PieChart pieChart;
+    @FXML
+    private Label classNamelbl;
+    @FXML
+    private Label welcomeTeacherLbl;
 
-    public ClassAttendanceController() throws IOException, SQLException {
-        attendanceModel = new AttendanceModel();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            attendanceModel = new AttendanceModel();
+            LoginModel.getInstance();
+
+            String teacherName = LoginModel.getInstance().getLoggedInTeacher().getName();
+            String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName().getName();
+            welcomeTeacherLbl.setText("Welcome back " + teacherName + "! You have " + courseName + " on the schedule today.");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
         allStudents = attendanceModel.getAllStudents();
         allClasses = attendanceModel.getAllClasses();
 

@@ -30,8 +30,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userField.setText("abrendeke0@arizona.edu");
-        passwordField.setText("I2ZFmfVT");
+        userField.setText("mwatling0@globo.com");
+        passwordField.setText("GVYJI0i6");
 
         try {
             attendanceModel = new AttendanceModel();
@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void handleStudentLogin(ActionEvent event) throws SQLException, IOException {
-        LoginModel.getINSTANCE().logInStudent(userField.getText(), passwordField.getText());
+        LoginModel.getInstance().logInStudent(userField.getText(), passwordField.getText());
 
         Node node = (Node) event.getSource();
 
@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
 
     @FXML
     public void handleTeacherLogin(ActionEvent event) throws IOException, SQLException {
-        LoginModel.getINSTANCE().logInTeacher(userField.getText(), passwordField.getText());
+        LoginModel.getInstance().logInTeacher(userField.getText(), passwordField.getText());
         Node node = (Node) event.getSource();
 
         Stage stage = (Stage) node.getScene().getWindow();

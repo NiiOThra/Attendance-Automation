@@ -4,12 +4,12 @@ public class Teacher {
 
     private int teacherID;
     private String name;
-    private int type = 0;
+    private Class className;
 
-    public Teacher(int teacherID, String name, int type){
+    public Teacher(int teacherID, String name, Class className){
         this.teacherID = teacherID;
         this.name = name;
-        this.type = type;
+        this.className = className;
     }
 
     public int getTeacherID(){
@@ -20,7 +20,7 @@ public class Teacher {
         return name;
     }
 
-    public int getType(){
-        return type;
+    public Class getClassName(){
+        return className;
     }
 }

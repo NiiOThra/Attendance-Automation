@@ -9,20 +9,20 @@ import java.sql.SQLException;
 
 public class LoginModel {
 
-    private static LoginModel INSTANCE;
+    private static LoginModel instance;
     Student loggedInStudent = null;
     Teacher loggedInTeacher = null;
     AttendanceManager attManager;
 
-    private  LoginModel() throws IOException, SQLException {
+    private LoginModel() throws IOException, SQLException {
         attManager = new AttendanceManager();
     }
 
-    public static LoginModel getINSTANCE() throws IOException, SQLException {
-        if (INSTANCE == null){
-            INSTANCE = new LoginModel();
+    public static LoginModel getInstance() throws IOException, SQLException {
+        if (instance == null){
+            instance = new LoginModel();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public Student logInStudent(String username, String password) throws SQLException {

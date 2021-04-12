@@ -38,9 +38,9 @@ public class AttendanceManager {
      * Gets a list of all the classes from the DALManager.
      * @return the list of students.
      */
-    public List<Class> getAllClasses(){
+    /**public List<Class> getAllClasses(){
         return DALManager.getAllClasses();
-    }
+    }**/
 
     public Student getStudentData(String userName, String password) throws SQLException {
         return studentDAO.getStudentData(userName, password);

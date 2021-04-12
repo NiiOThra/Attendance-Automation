@@ -60,8 +60,8 @@ public class AttendanceController implements Initializable {
 
 
         try {
-            LoginModel.getINSTANCE();
-            String name = LoginModel.getINSTANCE().getLoggedInStudent().getName();
+            LoginModel.getInstance();
+            String name = LoginModel.getInstance().getLoggedInStudent().getName();
             nameField.setText(name);
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -117,5 +117,4 @@ public class AttendanceController implements Initializable {
 
         updateBtn.setText("Request to update " + selectedAb + ": sent");
     }
-
 }

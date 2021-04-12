@@ -1,5 +1,6 @@
 package Application.DAL.database;
 
+import Application.BE.Class;
 import Application.BE.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -21,10 +22,12 @@ public class TeacherDAO {
 
     public Teacher getTeacherLogin(String username, String password) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
-            String query = "SELECT Name, Persons.Id, Persons.[Type], Persons.LoginId " +
-                    "FROM Persons " +
-                    "INNER JOIN " +
-                    "LoginInformation ON Persons.LoginId = LoginInformation.Id WHERE Username = ? AND [Password] = ?";
+            String query = "SELECT * FROM Persons" +
+                    "INNER JOIN LoginInformation" +
+                    "ON Persons.LoginId = LoginInformation.Id" +
+                    "INNER JOIN Courses" +
+                    "ON Persons.Id = Courses.TeacherId" +
+                    "WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
             st.setString(2, password);
@@ -37,9 +40,12 @@ public class TeacherDAO {
                 String name = rs.getString("Name");
                 int type = rs.getInt("Type");
                 int loginID = rs.getInt("LoginId");
-                teacher = new Teacher(id, name, type);
+                Class className = (Class) rs.getObject("Courses.Name");
+                teacher = new Teacher(id, name, className);
             }
             return teacher;
         }
     }
+
+
 }
