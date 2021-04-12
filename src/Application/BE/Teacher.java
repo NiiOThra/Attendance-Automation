@@ -4,9 +4,9 @@ public class Teacher {
 
     private int teacherID;
     private String name;
-    private Class className;
+    private String className;
 
-    public Teacher(int teacherID, String name, Class className){
+    public Teacher(int teacherID, String name, String className){
         this.teacherID = teacherID;
         this.name = name;
         this.className = className;
@@ -20,7 +20,7 @@ public class Teacher {
         return name;
     }
 
-    public Class getClassName(){
+    public String getClassName(){
         return className;
     }
 }

@@ -20,11 +20,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClassAttendanceController implements Initializable {
@@ -45,8 +47,6 @@ public class ClassAttendanceController implements Initializable {
     @FXML
     private PieChart pieChart;
     @FXML
-    private Label classNamelbl;
-    @FXML
     private Label welcomeTeacherLbl;
 
 
@@ -57,26 +57,30 @@ public class ClassAttendanceController implements Initializable {
             LoginModel.getInstance();
 
             String teacherName = LoginModel.getInstance().getLoggedInTeacher().getName();
-            String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName().getName();
-            welcomeTeacherLbl.setText("Welcome back " + teacherName + "! You have " + courseName + " on the schedule today.");
+            String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName();
+            welcomeTeacherLbl.setText("Welcome to your class attendance overview " + teacherName);
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-
-        allStudents = attendanceModel.getAllStudents();
         allClasses = attendanceModel.getAllClasses();
 
-        lstAllStudents.setItems(allStudents);
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
-        nameColumn.setSortType(TableColumn.SortType.DESCENDING);
-        lstAllStudents.getSortOrder().add(attendanceColumn);
-        lstAllStudents.sort();
+        //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
+        //nameColumn.setSortType(TableColumn.SortType.DESCENDING);
+        //lstAllStudents.getSortOrder().add(attendanceColumn);
+        //lstAllStudents.sort();
 
         lstClasses.setItems(allClasses);
+    }
+
+    public void handleGetStudents(MouseEvent event) throws SQLException {
+        lstAllStudents.getItems().clear();
+        Class selectedCourse = lstClasses.getSelectionModel().getSelectedItem();
+        attendanceModel.getAllStudents(selectedCourse);
+        lstAllStudents.getItems().setAll(allStudents);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
     }
 
     public void handleShowChart(ActionEvent event){
@@ -117,8 +121,6 @@ public class ClassAttendanceController implements Initializable {
             pieChartSCO.forEach(data ->
                     data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
         }
-
-
     }
 
     public void getSpecificStudentInfo(){

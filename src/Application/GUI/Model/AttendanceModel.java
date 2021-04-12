@@ -16,6 +16,7 @@ public class AttendanceModel {
     private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
     Student loggedInStudent = null;
+    Class course;
 
     /**
      * The constructor of the model class. Creating all the observable
@@ -24,18 +25,17 @@ public class AttendanceModel {
     public AttendanceModel() throws IOException, SQLException {
         attendanceManager = new AttendanceManager();
 
-        allStudents = FXCollections.observableArrayList();
-        //allStudents.addAll(attendanceManager.getAllStudents());
-
         allClasses = FXCollections.observableArrayList();
-        //allClasses.addAll(attendanceManager.getAllClasses());
+        allClasses.addAll(attendanceManager.getAllClasses());
     }
 
     /**
      * Gets a list of students.
      * @return the list of students.
      */
-    public ObservableList<Student> getAllStudents() {
+    public ObservableList<Student> getAllStudents(Class course) throws SQLException {
+        allStudents = FXCollections.observableArrayList();
+        allStudents.addAll(attendanceManager.getAllStudents(course));
         return allStudents;
     }
 

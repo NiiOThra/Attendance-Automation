@@ -22,12 +22,7 @@ public class TeacherDAO {
 
     public Teacher getTeacherLogin(String username, String password) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
-            String query = "SELECT * FROM Persons" +
-                    "INNER JOIN LoginInformation" +
-                    "ON Persons.LoginId = LoginInformation.Id" +
-                    "INNER JOIN Courses" +
-                    "ON Persons.Id = Courses.TeacherId" +
-                    "WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
+            String query = "SELECT * FROM Persons INNER JOIN LoginInformation ON Persons.LoginId = LoginInformation.Id INNER JOIN Courses ON Persons.Id = Courses.TeacherId WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
             st.setString(2, password);
@@ -40,12 +35,10 @@ public class TeacherDAO {
                 String name = rs.getString("Name");
                 int type = rs.getInt("Type");
                 int loginID = rs.getInt("LoginId");
-                Class className = (Class) rs.getObject("Courses.Name");
+                String className = rs.getString("CourseName");
                 teacher = new Teacher(id, name, className);
             }
             return teacher;
         }
     }
-
-
 }
