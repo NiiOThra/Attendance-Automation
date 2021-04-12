@@ -2,6 +2,7 @@ package Application.GUI.Controller;
 
 import Application.BE.Student;
 import Application.GUI.Model.AttendanceModel;
+import Application.GUI.Model.LoginModel;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -29,8 +30,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userField.setText("scuphus0");
-        passwordField.setText("zs7dCV6Qr");
+        userField.setText("abrendeke0@arizona.edu");
+        passwordField.setText("I2ZFmfVT");
 
         try {
             attendanceModel = new AttendanceModel();
@@ -42,53 +43,8 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleStudentView(ActionEvent event){
-        startStudentView("/Application/GUI/View/AttendanceView.fxml");
-    }
-
-    public void startStudentView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(fxmlPath));
-            Parent mainLayout = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Attendance Automation: logged in as student");
-            stage.setScene(new Scene(mainLayout));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleTeacherView(ActionEvent event)
-    {
-        startTeacherView("/Application/GUI/View/ClassAttendanceView.fxml");
-    }
-
-    public void startTeacherView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(fxmlPath));
-            Parent mainLayout = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Attendance Automation: logged in as teacher");
-            stage.setScene(new Scene(mainLayout));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setAttendanceModel(AttendanceModel attendanceModel) throws IOException, SQLException {
-        attendanceModel.getLoggedinStudent();
-    }
-
-    @FXML
-    public void handleSendData(ActionEvent event) throws SQLException {
-        Student stud = attendanceModel.logInStudent(userField.getText(), passwordField.getText());
+    public void handleStudentLogin(ActionEvent event) throws SQLException, IOException {
+        LoginModel.getINSTANCE().logInStudent(userField.getText(), passwordField.getText());
 
         Node node = (Node) event.getSource();
 
@@ -96,8 +52,6 @@ public class LoginController implements Initializable {
         stage.close();
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/AttendanceView.FXML"));
-
-            root.setUserData(stud);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -108,5 +62,22 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    public void handleTeacherLogin(ActionEvent event) throws IOException, SQLException {
+        LoginModel.getINSTANCE().logInTeacher(userField.getText(), passwordField.getText());
+        Node node = (Node) event.getSource();
 
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/ClassAttendanceView.FXML"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
 }

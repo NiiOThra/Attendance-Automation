@@ -25,10 +25,10 @@ public class AttendanceModel {
         attendanceManager = new AttendanceManager();
 
         allStudents = FXCollections.observableArrayList();
-        allStudents.addAll(attendanceManager.getAllStudents());
+        //allStudents.addAll(attendanceManager.getAllStudents());
 
         allClasses = FXCollections.observableArrayList();
-        allClasses.addAll(attendanceManager.getAllClasses());
+        //allClasses.addAll(attendanceManager.getAllClasses());
     }
 
     /**
@@ -45,14 +45,5 @@ public class AttendanceModel {
      */
     public ObservableList<Class> getAllClasses(){
         return allClasses;
-    }
-
-    public Student logInStudent(String userName, String password) throws SQLException {
-        loggedInStudent = attendanceManager.getStudentData(userName, password);
-        return loggedInStudent;
-    }
-
-    public Student getLoggedinStudent(){
-        return loggedInStudent;
     }
 }

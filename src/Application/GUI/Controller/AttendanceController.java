@@ -4,6 +4,7 @@ package Application.GUI.Controller;
 import Application.BE.Class;
 import Application.BE.Student;
 import Application.GUI.Model.AttendanceModel;
+import Application.GUI.Model.LoginModel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
@@ -57,16 +58,20 @@ public class AttendanceController implements Initializable {
             throwables.printStackTrace();
         }
 
+
+        try {
+            LoginModel.getINSTANCE();
+            String name = LoginModel.getINSTANCE().getLoggedInStudent().getName();
+            nameField.setText(name);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         allClasses = attendanceModel.getAllClasses();
         lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");
-
-        lstAbsenceDays.getItems().add("ITO - 24-9-2020");
-        lstAbsenceDays.getItems().add("ITO - 8-10-2020");
-        lstAbsenceDays.getItems().add("SDE - 9-10-2020");
-        lstAbsenceDays.getItems().add("DBOS - 10-10-2020");
-        lstAbsenceDays.getItems().add("SCO 5-12-2020");
     }
 
     public void handleCheckIn(ActionEvent event) {
@@ -112,17 +117,5 @@ public class AttendanceController implements Initializable {
 
         updateBtn.setText("Request to update " + selectedAb + ": sent");
     }
-
-    @FXML
-    private void receiveData(ActionEvent event){
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-
-        Student stud = (Student) stage.getUserData();
-
-        String name = stud.getName();
-        nameField.setText(name);
-    }
-
 
 }

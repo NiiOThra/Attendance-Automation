@@ -6,7 +6,6 @@ public class Student extends RecursiveTreeObject<Student> {
 
     private int studentID;
     private String name;
-    private int attendance;
 
 
     public Student(int studentID, String name) {
@@ -24,10 +23,6 @@ public class Student extends RecursiveTreeObject<Student> {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public int getAttendance(){
-        return attendance;
     }
 
 }
