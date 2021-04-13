@@ -25,7 +25,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AttendanceController implements Initializable {
+public class MyAttendanceController implements Initializable {
 
     private AttendanceModel attendanceModel;
 
@@ -69,19 +69,12 @@ public class AttendanceController implements Initializable {
             throwables.printStackTrace();
         }
         allClasses = attendanceModel.getAllClasses();
-        lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");
     }
 
     public void handleCheckIn(ActionEvent event) {
-        Class chosenClass = lstClasses.getSelectionModel().getSelectedItem();
 
-        if (chosenClass == null) {
-            checkInBtn.setText("Choose a class to check in!");
-        } else if (chosenClass != null) {
-            checkInBtn.setText("You are checked in for " + chosenClass + " today!");
-        }
     }
 
     public void handleChooseView(ActionEvent event){
@@ -112,9 +105,4 @@ public class AttendanceController implements Initializable {
         Platform.exit();
     }
 
-    public void handleUpdateAtt(ActionEvent event){
-        Object selectedAb = lstAbsenceDays.getSelectionModel().getSelectedItem();
-
-        updateBtn.setText("Request to update " + selectedAb + ": sent");
-    }
 }

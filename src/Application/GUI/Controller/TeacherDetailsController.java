@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-public class SpecificStudentAttendanceController implements Initializable {
+public class TeacherDetailsController implements Initializable {
 
     private AttendanceModel attendanceModel;
 

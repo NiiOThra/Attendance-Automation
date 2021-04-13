@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="vBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.SpecificStudentAttendanceController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="vBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.TeacherDetailsController">
    <stylesheets>
       <URL value="@../CSS/styleClass.css" />
    </stylesheets>
