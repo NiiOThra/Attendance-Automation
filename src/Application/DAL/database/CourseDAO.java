@@ -21,7 +21,7 @@ public class CourseDAO {
     }
 
 
-    /**public List<Class> getAllClasses() throws SQLException {
+    public List<Class> getAllClasses() throws SQLException {
         List<Class> allCourses = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement statement = con.createStatement()){
@@ -34,5 +34,5 @@ public class CourseDAO {
             }
             return allCourses;
         }
-    }**/
+    }
 }

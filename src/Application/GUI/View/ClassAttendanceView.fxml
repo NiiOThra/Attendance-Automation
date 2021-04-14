@@ -16,7 +16,7 @@
       <URL value="@../CSS/styleClass.css" />
    </stylesheets>
    <children>
-      <TableView fx:id="lstAttendance" layoutX="23.0" layoutY="55.0" prefHeight="505.0" prefWidth="344.0">
+      <TableView fx:id="lstAllStudents" layoutX="23.0" layoutY="55.0" prefHeight="505.0" prefWidth="344.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="222.4000244140625" text="Name" />
           <TableColumn fx:id="attendanceColumn" prefWidth="120.0" text="Attendance %" />
@@ -30,7 +30,7 @@
       </Text>
       <PieChart fx:id="pieChart" layoutX="386.0" layoutY="86.0" prefHeight="467.0" prefWidth="390.0" style="-fx-background-color: lightblue;" />
       <Label fx:id="classNamelbl" layoutX="466.0" layoutY="47.0" prefHeight="18.0" prefWidth="223.0" />
-      <Label fx:id="teacherNamelbl" layoutX="93.0" layoutY="25.0" prefHeight="18.0" prefWidth="302.0" />
-      <JFXComboBox fx:id="lstClasses" layoutX="520.0" layoutY="53.0" prefHeight="25.0" prefWidth="115.0" />
+      <Label fx:id="welcomeTeacherLbl" layoutX="93.0" layoutY="25.0" prefHeight="18.0" prefWidth="302.0" />
+      <JFXComboBox fx:id="lstClasses" layoutX="520.0" layoutY="53.0" onMouseClicked="#handleGetStudents" prefHeight="25.0" prefWidth="115.0" />
    </children>
 </AnchorPane>

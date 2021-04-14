@@ -1,6 +1,5 @@
 package Application.GUI.Model;
 
-import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Student;
 import Application.BLL.AttendanceManager;
@@ -15,9 +14,9 @@ public class AttendanceModel {
     private final AttendanceManager attendanceManager;
 
     private ObservableList<Student> allStudents;
-    private ObservableList<Attendance> attendanceList;
     private ObservableList<Class> allClasses;
-
+    Student loggedInStudent = null;
+    Class course;
 
     /**
      * The constructor of the model class. Creating all the observable
@@ -26,27 +25,18 @@ public class AttendanceModel {
     public AttendanceModel() throws IOException, SQLException {
         attendanceManager = new AttendanceManager();
 
-        allStudents = FXCollections.observableArrayList();
-        allStudents.addAll(attendanceManager.getAllStudents());
-
-        attendanceList = FXCollections.observableArrayList();
-        attendanceList.addAll(attendanceManager.getAttendance());
-
-        int teacherId = LoginModel.getInstance().loggedInTeacher.getTeacherID();
         allClasses = FXCollections.observableArrayList();
-        allClasses.addAll(attendanceManager.getAllClasses(teacherId));
+        allClasses.addAll(attendanceManager.getAllClasses());
     }
 
     /**
      * Gets a list of students.
      * @return the list of students.
      */
-    public ObservableList<Student> getAllStudents() {
+    public ObservableList<Student> getAllStudents(Class course) throws SQLException {
+        allStudents = FXCollections.observableArrayList();
+        allStudents.addAll(attendanceManager.getAllStudents(course));
         return allStudents;
-    }
-
-    public ObservableList<Attendance> getAttendanceList(){
-        return attendanceList;
     }
 
     /**

@@ -1,6 +1,5 @@
 package Application.BLL;
 
-import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Student;
 import Application.BE.Teacher;
@@ -33,17 +32,9 @@ public class AttendanceManager {
      * Gets a list of all the students from the DALManager.
      * @return the list of all students.
      */
-    public List<Student> getAllStudents() throws SQLException {
-        return studentDAO.getAllStudents();
+    public List<Student> getAllStudents(Class course) throws SQLException {
+        return studentDAO.getStudents(course);
     }
-
-    /**
-     * Gets a list of all the classes from the DALManager.
-     * @return the list of students.
-     */
-    /**public List<Class> getAllClasses(){
-     return DALManager.getAllClasses();
-     }**/
 
     public Student getStudentData(String userName, String password) throws SQLException {
         return studentDAO.getStudentData(userName, password);
@@ -53,11 +44,7 @@ public class AttendanceManager {
         return teacherDAO.getTeacherLogin(username, password);
     }
 
-    public List<Class> getAllClasses(int teacherId) throws SQLException {
-        return teacherDAO.getClasses(teacherId);
-    }
-
-    public List<Attendance> getAttendance() throws SQLException {
-        return studentDAO.getAttendance();
+    public List<Class> getAllClasses() throws SQLException {
+        return courseDAO.getAllClasses();
     }
 }

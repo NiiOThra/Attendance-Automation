@@ -25,8 +25,4 @@ public class Student extends RecursiveTreeObject<Student> {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }

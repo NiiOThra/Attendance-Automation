@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
+    AttendanceModel attendanceModel;
+
     @FXML
     private JFXTextField userField;
     @FXML
@@ -32,8 +34,16 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userField.setText("mmagrannell3@topsy.com");
-        passwordField.setText("P67TAm7djE");
+        userField.setText("mwatling0@globo.com");
+        passwordField.setText("GVYJI0i6");
+
+        try {
+            attendanceModel = new AttendanceModel();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @FXML
