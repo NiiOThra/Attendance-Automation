@@ -43,7 +43,7 @@
             <Insets left="75.0" right="100.0" top="40.0" />
          </VBox.margin>
       </ButtonBar>
-      <Button mnemonicParsing="false" text="Cancel">
+      <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#handleCloseApp" text="Cancel">
          <VBox.margin>
             <Insets left="540.0" top="15.0" />
          </VBox.margin>
