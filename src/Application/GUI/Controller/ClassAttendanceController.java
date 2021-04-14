@@ -1,5 +1,6 @@
 package Application.GUI.Controller;
 
+import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Student;
 import Application.BE.Teacher;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,22 +35,26 @@ public class ClassAttendanceController implements Initializable {
 
     private AttendanceModel attendanceModel;
 
-    private ObservableList<Student> allStudents;
+    //private ObservableList<Student> allStudents;
     private ObservableList<Class> allClasses;
+    private ObservableList<Attendance> attendanceList;
 
     @FXML
-    private TableView<Student> lstAllStudents;
+    private TableView<Attendance> lstAttendance;
     @FXML
-    private TableColumn<Student, String> nameColumn;
+    private TableColumn<Attendance, String> nameColumn;
     @FXML
-    private TableColumn<Student, Integer> attendanceColumn;
+    private TableColumn<Attendance, Integer> attendanceColumn;
     @FXML
-    private JFXComboBox<Class> lstClasses;
+    private ComboBox<Class> lstClasses;
     @FXML
     private PieChart pieChart;
     @FXML
-    private Label welcomeTeacherLbl;
+    private Label teacherNamelbl;
 
+    public ClassAttendanceController() throws IOException, SQLException {
+        attendanceModel = new AttendanceModel();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,37 +64,34 @@ public class ClassAttendanceController implements Initializable {
 
             String teacherName = LoginModel.getInstance().getLoggedInTeacher().getName();
             String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName();
-            welcomeTeacherLbl.setText("Welcome to your class attendance overview " + teacherName);
+            teacherNamelbl.setText("Welcome back " + teacherName + "! " + courseName + " is on your schedule today.");
+            allClasses = attendanceModel.getAllClasses();
+            lstClasses.setItems(allClasses);
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        allClasses = attendanceModel.getAllClasses();
+        attendanceList = attendanceModel.getAttendanceList();
 
-        //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
-        //nameColumn.setSortType(TableColumn.SortType.DESCENDING);
-        //lstAllStudents.getSortOrder().add(attendanceColumn);
-        //lstAllStudents.sort();
+        lstAttendance.setItems(attendanceList);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("stud"));
+        attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("Attendance"));
+        nameColumn.setSortType(TableColumn.SortType.DESCENDING);
+        lstAttendance.getSortOrder().add(attendanceColumn);
+        lstAttendance.sort();
 
+        lstAttendance.setItems(attendanceList);
         lstClasses.setItems(allClasses);
     }
 
-    public void handleGetStudents(MouseEvent event) throws SQLException {
-        lstAllStudents.getItems().clear();
-        Class selectedCourse = lstClasses.getSelectionModel().getSelectedItem();
-        attendanceModel.getAllStudents(selectedCourse);
-        lstAllStudents.getItems().setAll(allStudents);
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-    }
-
-    public void handleShowChart(ActionEvent event){
+    public void handleShowChart(ActionEvent event) {
         int selectedIndex = lstClasses.getSelectionModel().getSelectedIndex();
         ObservableList<PieChart.Data> pieChartITO = FXCollections.observableArrayList();
         ObservableList<PieChart.Data> pieChartSCO = FXCollections.observableArrayList();
 
-        if (selectedIndex == 0){
+        if (selectedIndex == 0) {
             pieChart.getData().removeAll(pieChartSCO);
             pieChartITO.add(new PieChart.Data("Doria Bulford", 50));
             pieChartITO.add(new PieChart.Data("Regen Hearson", 66));
@@ -105,7 +108,7 @@ public class ClassAttendanceController implements Initializable {
             pieChartITO.forEach(data ->
                     data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
 
-        } else if (selectedIndex == 1){
+        } else if (selectedIndex == 1) {
             pieChartSCO.add(new PieChart.Data("Doria Bulford", 40));
             pieChartSCO.add(new PieChart.Data("Regen Hearson", 100));
             pieChartSCO.add(new PieChart.Data("Bruis Hazlegrove", 90));
@@ -121,10 +124,12 @@ public class ClassAttendanceController implements Initializable {
             pieChartSCO.forEach(data ->
                     data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
         }
+
+
     }
 
-    public void getSpecificStudentInfo(){
-        showSpecificStudentInfo("/Application/GUI/View/SpecificStudentAttendanceView.fxml");
+    public void getSpecificStudentInfo() {
+        showSpecificStudentInfo("/gui/view/SpecificStudentAttendanceView.fxml");
     }
 
     public void showSpecificStudentInfo(String fxmlPath) {
