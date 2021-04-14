@@ -32,10 +32,9 @@
       </MenuBar>
       <PieChart fx:id="pieChart" layoutX="38.0" layoutY="145.0" prefHeight="422.0" prefWidth="440.0" />
       <JFXComboBox fx:id="lstView" focusColor="BLACK" labelFloat="true" layoutX="38.0" layoutY="86.0" onAction="#handleChooseView" prefHeight="26.0" prefWidth="203.0" promptText="Choose to view your chart" unFocusColor="BLACK" />
-      <Button fx:id="checkInBtn" layoutX="543.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="106.0" prefWidth="234.0" text="Check in for today!" />
+      <Button fx:id="checkInBtn" layoutX="283.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="67.0" prefWidth="234.0" text="Check in for today!" />
       <Button fx:id="closeBtn" layoutX="543.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCloseApp" prefHeight="26.0" prefWidth="234.0" text="Close application.." />
-      <Label fx:id="percLbl" layoutX="258.0" layoutY="108.0" prefHeight="26.0" prefWidth="245.0" textFill="WHITE" />
-      <JFXListView fx:id="lstAbsenceDays" layoutX="543.0" layoutY="75.0" prefHeight="317.0" prefWidth="234.0" />
+      <JFXListView fx:id="lstAbsenceDays" layoutX="543.0" layoutY="75.0" prefHeight="196.0" prefWidth="234.0" />
       <Label fx:id="nameField" layoutX="38.0" layoutY="41.0" prefHeight="32.0" prefWidth="414.0" text="Label">
          <font>
             <Font name="System Bold" size="22.0" />
