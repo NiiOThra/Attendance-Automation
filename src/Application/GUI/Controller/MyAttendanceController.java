@@ -68,7 +68,7 @@ public class MyAttendanceController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        allClasses = attendanceModel.getAllClasses();
+        //allClasses = attendanceModel.getAllClasses();
 
         lstView.getItems().add("Whole semester");
     }

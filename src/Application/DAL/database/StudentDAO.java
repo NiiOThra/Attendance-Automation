@@ -1,13 +1,11 @@
 package Application.DAL.database;
 
+import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Student;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,23 +43,51 @@ public class StudentDAO {
         }
     }
 
-    public List<Student> getStudents(Class course) throws SQLException{
+    public List<Student> getAllStudents() throws SQLException{
         List<Student> allStudents = new ArrayList<>();
-        try (Connection con = connectionPool.checkOut()){
-            String query = "SELECT StudentId, Persons.Name FROM StudentCourse INNER JOIN Persons ON StudentCourse.StudentId = Persons.Id WHERE StudentCourse.CourseId = ?;";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, course.getClassID());
-            st.execute();
+        Connection con = connectionPool.checkOut();
+        try (Statement st = con.createStatement()){
+            ResultSet rs = st.executeQuery("SELECT * FROM Persons WHERE Type = 1");
 
-            ResultSet rs= st.getResultSet();
-            while (rs.next()) {
-                int id = rs.getInt("StudentId");
+            while (rs.next()){
+                int id = rs.getInt("ID");
                 String name = rs.getString("Name");
 
                 Student stud = new Student(id, name);
                 allStudents.add(stud);
             }
             return allStudents;
+        }
+    }
+
+    public List<Attendance> getAttendance() throws SQLException{
+        List<Attendance> attendanceCourse = new ArrayList<>();
+        Connection con = connectionPool.checkOut();
+        try (Statement st = con.createStatement()){
+            ResultSet rs = st.executeQuery("SELECT *, Courses.CourseName " +
+                    "FROM CourseAttendance " +
+                    "INNER JOIN StudentCourse " +
+                    "ON CourseAttendance.StudentCourseId = StudentCourse.Id " +
+                    "INNER JOIN Persons ON StudentCourse.StudentId = Persons.ID " +
+                    "INNER JOIN Courses ON StudentCourse.CourseId = Courses.Id");
+
+
+            Student stud = null;
+            Attendance att = null;
+            while (rs.next()){
+                int id = rs.getInt("StudentId");
+                String studentName = rs.getString("Name");
+                int classId = rs.getInt("CourseId");
+                String className = rs.getString("CourseName");
+                Class course = new Class(classId, className);
+
+                stud= new Student(id, studentName);
+                int attendance = rs.getInt("Attendance");
+
+                att = new Attendance(id, course, stud, attendance);
+                attendanceCourse.add(att);
+            }
+            return attendanceCourse;
         }
     }
 

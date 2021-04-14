@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherDAO {
 
@@ -22,7 +24,9 @@ public class TeacherDAO {
 
     public Teacher getTeacherLogin(String username, String password) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
-            String query = "SELECT * FROM Persons INNER JOIN LoginInformation ON Persons.LoginId = LoginInformation.Id INNER JOIN Courses ON Persons.Id = Courses.TeacherId WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
+            String query = "SELECT * FROM Persons INNER JOIN LoginInformation "
+                    + "ON Persons.LoginId = LoginInformation.Id INNER JOIN Courses ON Persons.Id = Courses.TeacherId " +
+                    "WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
             st.setString(2, password);
@@ -40,5 +44,23 @@ public class TeacherDAO {
             }
             return teacher;
         }
+    }
+
+    public List<Class> getClasses(int teacherId) throws SQLException {
+        List<Class> allCourses = new ArrayList<>();
+        String sql = "SELECT * FROM Courses WHERE TeacherId = ?";
+        try (Connection con = connectionPool.checkOut()) {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, teacherId);
+            st.execute();
+
+            ResultSet rs = st.getResultSet();
+            while (rs.next()) {
+                int id = rs.getInt("Id");
+                String name = rs.getString("CourseName");
+                Class course = new Class(id, name);
+                allCourses.add(course);
+            }
+        } return allCourses;
     }
 }
