@@ -12,6 +12,7 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="vBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.MyAttendanceController">
    <stylesheets>
@@ -30,16 +31,20 @@
         </menus>
       </MenuBar>
       <PieChart fx:id="pieChart" layoutX="38.0" layoutY="145.0" prefHeight="422.0" prefWidth="440.0" />
-      <JFXComboBox fx:id="lstView" focusColor="BLACK" labelFloat="true" layoutX="38.0" layoutY="108.0" onAction="#handleChooseView" prefHeight="26.0" prefWidth="203.0" promptText="Choose to view your chart" unFocusColor="BLACK" />
-      <Button fx:id="checkInBtn" layoutX="522.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="106.0" prefWidth="234.0" text="Check in for today!" />
-      <Button fx:id="closeBtn" layoutX="523.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleCloseApp" prefHeight="26.0" prefWidth="234.0" text="Close application.." />
+      <JFXComboBox fx:id="lstView" focusColor="BLACK" labelFloat="true" layoutX="38.0" layoutY="86.0" onAction="#handleChooseView" prefHeight="26.0" prefWidth="203.0" promptText="Choose to view your chart" unFocusColor="BLACK" />
+      <Button fx:id="checkInBtn" layoutX="543.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="106.0" prefWidth="234.0" text="Check in for today!" />
+      <Button fx:id="closeBtn" layoutX="543.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCloseApp" prefHeight="26.0" prefWidth="234.0" text="Close application.." />
       <Label fx:id="percLbl" layoutX="258.0" layoutY="108.0" prefHeight="26.0" prefWidth="245.0" textFill="WHITE" />
-      <JFXListView fx:id="lstAbsenceDays" layoutX="522.0" layoutY="307.0" prefHeight="203.0" prefWidth="234.0" />
-      <Label layoutX="522.0" layoutY="377.0" prefHeight="18.0" prefWidth="226.0" text="Your absent days" textFill="WHITE" />
-      <Label fx:id="nameField" layoutX="38.0" layoutY="60.0" prefHeight="32.0" prefWidth="414.0" text="Label" underline="true">
+      <JFXListView fx:id="lstAbsenceDays" layoutX="543.0" layoutY="75.0" prefHeight="317.0" prefWidth="234.0" />
+      <Label fx:id="nameField" layoutX="38.0" layoutY="41.0" prefHeight="32.0" prefWidth="414.0" text="Label">
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Label>
+      <Text layoutX="543.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Days of absence:" wrappingWidth="124.13671875">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
    </children>
    <effect>
       <InnerShadow />
