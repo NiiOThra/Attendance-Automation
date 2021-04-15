@@ -57,7 +57,7 @@ public class AttendanceManager {
         return teacherDAO.getClasses(teacherId);
     }
 
-    public List<Attendance> getAttendance() throws SQLException {
+    /**public List<Attendance> getAttendance() throws SQLException {
         return studentDAO.getAttendance();
-    }
+    }**/
 }

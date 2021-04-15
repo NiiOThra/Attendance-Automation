@@ -37,7 +37,7 @@ public class TeacherDAO {
             while (rs.next()) {
                 int id = rs.getInt("Id");
                 String name = rs.getString("Name");
-                int type = rs.getInt("Type");
+                int type = rs.getInt("Is_student");
                 int loginID = rs.getInt("LoginId");
                 String className = rs.getString("CourseName");
                 teacher = new Teacher(id, name, className);

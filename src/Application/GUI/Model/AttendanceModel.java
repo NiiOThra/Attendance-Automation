@@ -29,20 +29,12 @@ public class AttendanceModel {
         allStudents = FXCollections.observableArrayList();
         allStudents.addAll(attendanceManager.getAllStudents());
 
-        attendanceList = FXCollections.observableArrayList();
-        attendanceList.addAll(attendanceManager.getAttendance());
+        /**attendanceList = FXCollections.observableArrayList();
+        attendanceList.addAll(attendanceManager.getAttendance());**/
 
         int teacherId = LoginModel.getInstance().loggedInTeacher.getTeacherID();
         allClasses = FXCollections.observableArrayList();
         allClasses.addAll(attendanceManager.getAllClasses(teacherId));
-    }
-
-    /**
-     * Gets a list of students.
-     * @return the list of students.
-     */
-    public ObservableList<Student> getAllStudents() {
-        return allStudents;
     }
 
     public ObservableList<Attendance> getAttendanceList(){

@@ -21,7 +21,7 @@ public class StudentDAO {
 
     public Student getStudentData(String username, String password) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
-            String query = "SELECT Name, Persons.Id, Persons.[Type], Persons.LoginId " +
+            String query = "SELECT Name, Persons.Id, Persons.Is_student, Persons.LoginId " +
                     "FROM Persons " +
                     "INNER JOIN " +
                     "LoginInformation ON Persons.LoginId = LoginInformation.Id WHERE Username = ? AND [Password] = ?";
@@ -35,7 +35,7 @@ public class StudentDAO {
             while (rs.next()) {
                 int id = rs.getInt("Id");
                 String name = rs.getString("Name");
-                int type = rs.getInt("Type");
+                int type = rs.getInt("Is_student");
                 int loginID = rs.getInt("LoginId");
                 stud = new Student(id, name);
             }
@@ -47,7 +47,7 @@ public class StudentDAO {
         List<Student> allStudents = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery("SELECT * FROM Persons WHERE Type = 1");
+            ResultSet rs = st.executeQuery("SELECT * FROM Persons WHERE Is_student = 1");
 
             while (rs.next()){
                 int id = rs.getInt("ID");
@@ -60,11 +60,11 @@ public class StudentDAO {
         }
     }
 
-    public List<Attendance> getAttendance() throws SQLException{
+    /**public List<Attendance> getAttendance() throws SQLException{
         List<Attendance> attendanceCourse = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery("SELECT *, Courses.CourseName " +
+            ResultSet rs = st.executeQuery( "SELECT *, Courses.CourseName " +
                     "FROM CourseAttendance " +
                     "INNER JOIN StudentCourse " +
                     "ON CourseAttendance.StudentCourseId = StudentCourse.Id " +
@@ -89,6 +89,6 @@ public class StudentDAO {
             }
             return attendanceCourse;
         }
-    }
+    }**/
 
 }
