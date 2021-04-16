@@ -65,7 +65,8 @@ public class ClassAttendanceController implements Initializable {
             String teacherName = LoginModel.getInstance().getLoggedInTeacher().getName();
             String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName();
             teacherNamelbl.setText("Welcome back " + teacherName + "! " + courseName + " is on your schedule today.");
-            allClasses = attendanceModel.getAllClasses();
+            int teacherId = LoginModel.getInstance().getLoggedInTeacher().getTeacherID();
+            allClasses = LoginModel.getInstance().getTeacherClasses(teacherId);
             lstClasses.setItems(allClasses);
         } catch (IOException exception) {
             exception.printStackTrace();

@@ -41,7 +41,7 @@ public class TeacherDetailsController implements Initializable {
             throwables.printStackTrace();
         }
 
-        allClasses = attendanceModel.getAllClasses();
+        //allClasses = attendanceModel.getAllClasses();
         lstClasses.setItems(allClasses);
 
         lstView.getItems().add("Whole semester");

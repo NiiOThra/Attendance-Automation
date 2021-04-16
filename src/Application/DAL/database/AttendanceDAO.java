@@ -12,16 +12,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CourseDAO {
+public class AttendanceDAO {
 
     private final JDBCConnectionPool connectionPool;
 
-    public CourseDAO() throws IOException, SQLServerException {
+    public AttendanceDAO() throws IOException, SQLServerException {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
-
-    /**public List<Class> getAllClasses() throws SQLException {
+    public List<Class> getAllClasses() throws SQLException {
         List<Class> allCourses = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement statement = con.createStatement()){
@@ -34,5 +33,5 @@ public class CourseDAO {
             }
             return allCourses;
         }
-    }**/
+    }
 }

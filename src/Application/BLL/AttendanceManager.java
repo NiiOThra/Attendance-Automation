@@ -1,13 +1,11 @@
 package Application.BLL;
 
-import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Student;
 import Application.BE.Teacher;
-import Application.DAL.database.CourseDAO;
+import Application.DAL.database.AttendanceDAO;
 import Application.DAL.database.StudentDAO;
 import Application.DAL.database.TeacherDAO;
-import Application.DAL.mock.DALManager;
 //import Application.DAL.mock.DALManager;
 
 import java.io.IOException;
@@ -19,14 +17,14 @@ public class AttendanceManager {
     //private final DALManager DALManager;
     private final StudentDAO studentDAO;
     private final TeacherDAO teacherDAO;
-    private final CourseDAO courseDAO;
+    private final AttendanceDAO attendanceDAO;
 
 
     public AttendanceManager() throws IOException, SQLException {
         //DALManager = new DALManager();
         studentDAO = new StudentDAO();
         teacherDAO = new TeacherDAO();
-        courseDAO = new CourseDAO();
+        attendanceDAO = new AttendanceDAO();
     }
 
     /**
@@ -46,6 +44,7 @@ public class AttendanceManager {
      }**/
 
     public Student getStudentData(String userName, String password) throws SQLException {
+
         return studentDAO.getStudentData(userName, password);
     }
 
@@ -53,8 +52,12 @@ public class AttendanceManager {
         return teacherDAO.getTeacherLogin(username, password);
     }
 
-    public List<Class> getAllClasses(int teacherId) throws SQLException {
-        return teacherDAO.getClasses(teacherId);
+    public List<Class> getTeacherClasses(int teacherId) throws SQLException {
+        return teacherDAO.getTeacherClass(teacherId);
+    }
+
+    public List<Class> getStudentClasses() throws SQLException {
+        return studentDAO.getAllClasses();
     }
 
     /**public List<Attendance> getAttendance() throws SQLException {

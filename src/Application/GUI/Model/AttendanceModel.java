@@ -19,6 +19,7 @@ public class AttendanceModel {
     private ObservableList<Class> allClasses;
 
 
+
     /**
      * The constructor of the model class. Creating all the observable
      * arraylists and adding data to the lists.
@@ -32,9 +33,8 @@ public class AttendanceModel {
         /**attendanceList = FXCollections.observableArrayList();
         attendanceList.addAll(attendanceManager.getAttendance());**/
 
-        int teacherId = LoginModel.getInstance().loggedInTeacher.getTeacherID();
         allClasses = FXCollections.observableArrayList();
-        allClasses.addAll(attendanceManager.getAllClasses(teacherId));
+        allClasses.addAll(attendanceManager.getStudentClasses());
     }
 
     public ObservableList<Attendance> getAttendanceList(){

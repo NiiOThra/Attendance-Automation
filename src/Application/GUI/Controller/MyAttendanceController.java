@@ -29,10 +29,6 @@ public class MyAttendanceController implements Initializable {
 
     private AttendanceModel attendanceModel;
 
-    private ObservableList<Class> allClasses;
-
-    @FXML
-    private JFXComboBox<Class> lstClasses;
     @FXML
     private Button checkInBtn;
     @FXML
@@ -68,7 +64,6 @@ public class MyAttendanceController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        //allClasses = attendanceModel.getAllClasses();
 
         lstView.getItems().add("Whole semester");
     }

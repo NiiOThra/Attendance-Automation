@@ -26,7 +26,7 @@ public class TeacherDAO {
         try (Connection con = connectionPool.checkOut()) {
             String query = "SELECT * FROM Persons INNER JOIN LoginInformation "
                     + "ON Persons.LoginId = LoginInformation.Id INNER JOIN Courses ON Persons.Id = Courses.TeacherId " +
-                    "WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ?";
+                    "WHERE LoginInformation.Username = ? AND [LoginInformation].[Password] = ? AND IsStudent = 0";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
             st.setString(2, password);
@@ -37,7 +37,7 @@ public class TeacherDAO {
             while (rs.next()) {
                 int id = rs.getInt("Id");
                 String name = rs.getString("Name");
-                int type = rs.getInt("Is_student");
+                int type = rs.getInt("IsStudent");
                 int loginID = rs.getInt("LoginId");
                 String className = rs.getString("CourseName");
                 teacher = new Teacher(id, name, className);
@@ -46,7 +46,7 @@ public class TeacherDAO {
         }
     }
 
-    public List<Class> getClasses(int teacherId) throws SQLException {
+    public List<Class> getTeacherClass(int teacherId) throws SQLException {
         List<Class> allCourses = new ArrayList<>();
         String sql = "SELECT * FROM Courses WHERE TeacherId = ?";
         try (Connection con = connectionPool.checkOut()) {
