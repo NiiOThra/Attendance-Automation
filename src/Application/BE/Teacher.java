@@ -1,26 +1,8 @@
 package Application.BE;
 
-public class Teacher {
+public class Teacher extends Person {
 
-    private int teacherID;
-    private String name;
-    private String className;
-
-    public Teacher(int teacherID, String name, String className){
-        this.teacherID = teacherID;
-        this.name = name;
-        this.className = className;
-    }
-
-    public int getTeacherID(){
-        return teacherID;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public String getClassName(){
-        return className;
+    public Teacher(int studentID, String name, int type) {
+        super(studentID, name, type);
     }
 }

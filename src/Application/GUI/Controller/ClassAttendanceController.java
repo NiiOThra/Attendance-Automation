@@ -62,10 +62,9 @@ public class ClassAttendanceController implements Initializable {
             attendanceModel = new AttendanceModel();
             LoginModel.getInstance();
 
-            String teacherName = LoginModel.getInstance().getLoggedInTeacher().getName();
-            String courseName = LoginModel.getInstance().getLoggedInTeacher().getClassName();
-            teacherNamelbl.setText("Welcome back " + teacherName + "! " + courseName + " is on your schedule today.");
-            int teacherId = LoginModel.getInstance().getLoggedInTeacher().getTeacherID();
+            String teacherName = LoginModel.getInstance().getLoggedinPerson().getName();
+            teacherNamelbl.setText("Welcome back " + teacherName + "! " + " is on your schedule today.");
+            int teacherId = LoginModel.getInstance().getLoggedinPerson().getId();
             allClasses = LoginModel.getInstance().getTeacherClasses(teacherId);
             lstClasses.setItems(allClasses);
         } catch (IOException exception) {

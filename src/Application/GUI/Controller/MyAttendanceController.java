@@ -57,7 +57,7 @@ public class MyAttendanceController implements Initializable {
 
         try {
             LoginModel.getInstance();
-            String name = LoginModel.getInstance().getLoggedInStudent().getName();
+            String name = LoginModel.getInstance().getLoggedinPerson().getName();
             nameField.setText(name);
         } catch (IOException exception) {
             exception.printStackTrace();

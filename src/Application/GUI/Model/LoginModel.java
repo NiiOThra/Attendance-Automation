@@ -1,6 +1,7 @@
 package Application.GUI.Model;
 
 import Application.BE.Class;
+import Application.BE.Person;
 import Application.BE.Student;
 import Application.BE.Teacher;
 import Application.BLL.AttendanceManager;
@@ -16,6 +17,7 @@ public class LoginModel {
     private static LoginModel instance;
     Student loggedInStudent = null;
     Teacher loggedInTeacher = null;
+    Person loggedinPerson = null;
     AttendanceManager attManager;
     private ObservableList<Class> teacherCourses;
 
@@ -28,6 +30,15 @@ public class LoginModel {
             instance = new LoginModel();
         }
         return instance;
+    }
+
+    public Person loginPerson(String username, String password) throws SQLException {
+        loggedinPerson = attManager.getLogin(username, password);
+        return loggedinPerson;
+    }
+
+    public Person getLoggedinPerson(){
+        return loggedinPerson;
     }
 
     public Student logInStudent(String username, String password) throws SQLException {

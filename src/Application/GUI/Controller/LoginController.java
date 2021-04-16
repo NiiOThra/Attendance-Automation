@@ -37,13 +37,37 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void handleStudentLogin(ActionEvent event) throws SQLException, IOException {
-        LoginModel.getInstance().logInStudent(userField.getText(), passwordField.getText());
+    public void handleLogin(ActionEvent event) throws IOException, SQLException {
+        LoginModel.getInstance().loginPerson(userField.getText(), passwordField.getText());
 
+        int type = LoginModel.getInstance().getLoggedinPerson().getType();
         Node node = (Node) event.getSource();
 
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
+
+        if (type == 1){
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/MyAttendanceView.FXML"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        }
+        else if (type == 0){
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/ClassAttendanceView.FXML"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        }
+    }
+    /**@FXML
+    public void handleStudentLogin(ActionEvent event) throws SQLException, IOException {
+        LoginModel.getInstance().logInStudent(userField.getText(), passwordField.getText());
+
+
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/MyAttendanceView.FXML"));
 
@@ -73,7 +97,7 @@ public class LoginController implements Initializable {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-    }
+    }**/
 
 
     public void handleCloseApp(ActionEvent event) {

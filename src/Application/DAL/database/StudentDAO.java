@@ -38,7 +38,7 @@ public class StudentDAO {
                 String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
                 int loginID = rs.getInt("LoginId");
-                stud = new Student(id, name);
+                stud = new Student(id, name, type);
             }
             return stud;
         }
@@ -56,7 +56,7 @@ public class StudentDAO {
                 String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
 
-                Student stud = new Student(id, name);
+                Student stud = new Student(id, name, type);
                 allStudents.add(stud);
             }
             return allStudents;

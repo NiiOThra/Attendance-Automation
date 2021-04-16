@@ -6,7 +6,6 @@ public class Person {
     private String name;
     private int type;
 
-
     public Person(int studentID, String name, int type) {
         this.id = studentID;
         this.name = name;
@@ -27,6 +26,10 @@ public class Person {
 
     public int getType(){
         return type;
+    }
+
+    public void setType(int type){
+        this.type = type;
     }
 
     @Override
