@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import java.net.URL?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
@@ -16,21 +15,20 @@
       <URL value="@../CSS/styleClass.css" />
    </stylesheets>
    <children>
-      <TableView fx:id="lstAttendance" layoutX="23.0" layoutY="55.0" prefHeight="505.0" prefWidth="344.0">
+      <TableView fx:id="lstToday" layoutX="23.0" layoutY="55.0" prefHeight="505.0" prefWidth="344.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="222.4000244140625" text="Name" />
           <TableColumn fx:id="attendanceColumn" prefWidth="120.0" text="Attendance %" />
         </columns>
       </TableView>
       <Button fx:id="checkFurther" layoutX="23.0" layoutY="561.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
-      <Text layoutX="23.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course" wrappingWidth="70.0">
+      <Text fx:id="teacherlbl" layoutX="37.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="726.7999877929688">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
       <PieChart fx:id="pieChart" layoutX="386.0" layoutY="86.0" prefHeight="467.0" prefWidth="390.0" style="-fx-background-color: lightblue;" />
-      <Label fx:id="classNamelbl" layoutX="466.0" layoutY="47.0" prefHeight="18.0" prefWidth="223.0" />
-      <Label fx:id="teacherNamelbl" layoutX="93.0" layoutY="25.0" prefHeight="18.0" prefWidth="302.0" />
-      <JFXComboBox fx:id="lstClasses" layoutX="520.0" layoutY="53.0" prefHeight="25.0" prefWidth="115.0" />
+      <Label fx:id="classNamelbl" layoutX="422.0" layoutY="24.0" prefHeight="18.0" prefWidth="223.0" />
+      <Button fx:id="openBtn" layoutX="385.0" layoutY="55.0" mnemonicParsing="false" text="Open class" />
    </children>
 </AnchorPane>

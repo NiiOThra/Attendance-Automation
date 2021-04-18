@@ -32,8 +32,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userField.setText("mmagrannell3@topsy.com");
-        passwordField.setText("P67TAm7djE");
+        userField.setText("nkildahl4@tumblr.com");
+        passwordField.setText("lGmd5yh");
     }
 
     @FXML
@@ -63,42 +63,6 @@ public class LoginController implements Initializable {
             stage.show();
         }
     }
-    /**@FXML
-    public void handleStudentLogin(ActionEvent event) throws SQLException, IOException {
-        LoginModel.getInstance().logInStudent(userField.getText(), passwordField.getText());
-
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/MyAttendanceView.FXML"));
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            stage.show();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void handleTeacherLogin(ActionEvent event) throws IOException, SQLException {
-        LoginModel.getInstance().logInTeacher(userField.getText(), passwordField.getText());
-        Node node = (Node) event.getSource();
-
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Application/GUI/View/ClassAttendanceView.FXML"));
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            stage.show();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }**/
-
 
     public void handleCloseApp(ActionEvent event) {
         Platform.exit();

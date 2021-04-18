@@ -59,6 +59,9 @@ public class MyAttendanceController implements Initializable {
             LoginModel.getInstance();
             String name = LoginModel.getInstance().getLoggedinPerson().getName();
             nameField.setText(name);
+            int loggedInStudent = LoginModel.getInstance().getLoggedinPerson().getId();
+            Class course = attendanceModel.getTodayClass(loggedInStudent);
+            checkInBtn.setText("Check in for " + course + " now");
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
@@ -68,8 +71,11 @@ public class MyAttendanceController implements Initializable {
         lstView.getItems().add("Whole semester");
     }
 
-    public void handleCheckIn(ActionEvent event) {
-
+    public void handleCheckIn(ActionEvent event) throws IOException, SQLException {
+        int student = LoginModel.getInstance().getLoggedinPerson().getId();
+        int course = attendanceModel.getTodayClass(student).getClassID();
+        attendanceModel.checkIn(student, course);
+        checkInBtn.setText("Your checked in for today!");
     }
 
     public void handleChooseView(ActionEvent event){

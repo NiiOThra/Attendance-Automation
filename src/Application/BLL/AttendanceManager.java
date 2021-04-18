@@ -29,12 +29,85 @@ public class AttendanceManager {
     }
 
     /**
-     * Gets a list of all the students from the DALManager.
+     * Gets a list of all the students from the studentDAO.
      * @return the list of all students.
      */
     public List<Student> getAllStudents() throws SQLException {
         return studentDAO.getAllStudents();
     }
+
+    /**
+     * Gets the login data.
+     * @param username typed in username
+     * @param password typed in password
+     * @return a Person object depending on the input from the user.
+     * @throws SQLException
+     */
+    public Person getLogin(String username, String password) throws SQLException {
+        return attendanceDAO.getLogin(username, password);
+    }
+
+    /**
+     * Gets a list of classes depending on the loggedin teacher
+     * @param teacherId
+     * @return a class object
+     * @throws SQLException
+     */
+    public Class getTeacherClasses(int teacherId) throws SQLException {
+        return teacherDAO.getTeacherClass(teacherId);
+    }
+
+    /**
+     * Gets a list of classes.
+     * @return a list of classes
+     * @throws SQLException
+     */
+    public List<Class> getStudentClasses() throws SQLException {
+        return studentDAO.getAllClasses();
+    }
+
+    /**
+     * Gets a list of students that has checked in for today.
+     * @return
+     * @throws SQLException
+     */
+    public List<Person> getActiveStudents() throws SQLException {
+        return attendanceDAO.getTodaysStudent();
+    }
+
+    /**
+     * Lets the teacher open today's class so students can check in.
+     * @param teacherId the loggedin teacher
+     * @param course the loggedin teacher course
+     * @throws SQLException
+     */
+    public void openClass(int teacherId, Class course) throws SQLException {
+        teacherDAO.openClass(teacherId, course);
+    }
+
+    /**
+     * Lets the student check in for the class that the teacher has opened.
+     * @param studentId the logged in student
+     * @param courseId the course that the teacher has opened
+     * @throws SQLException
+     */
+    public void checkIn(int studentId, int courseId) throws SQLException {
+        studentDAO.checkIn(studentId, courseId);
+    }
+
+    /**
+     * Just to show the student what course the teacher has opened.
+     * @param studentId logged in student
+     * @return a cass object for the student to see
+     * @throws SQLException
+     */
+    public Class todaysCourse(int studentId) throws SQLException {
+        return studentDAO.todaysCourse(studentId);
+    }
+
+    /**public List<Attendance> getAttendance() throws SQLException {
+        return studentDAO.getAttendance();
+    }**/
 
     /**
      * Gets a list of all the classes from the DALManager.
@@ -43,29 +116,4 @@ public class AttendanceManager {
     /**public List<Class> getAllClasses(){
      return DALManager.getAllClasses();
      }**/
-
-    public Person getLogin(String username, String password) throws SQLException {
-        return attendanceDAO.getLogin(username, password);
-    }
-
-    public Student getStudentData(String userName, String password) throws SQLException {
-
-        return studentDAO.getStudentData(userName, password);
-    }
-
-    public Teacher getTeacherLogin(String username, String password) throws SQLException {
-        return teacherDAO.getTeacherLogin(username, password);
-    }
-
-    public List<Class> getTeacherClasses(int teacherId) throws SQLException {
-        return teacherDAO.getTeacherClass(teacherId);
-    }
-
-    public List<Class> getStudentClasses() throws SQLException {
-        return studentDAO.getAllClasses();
-    }
-
-    /**public List<Attendance> getAttendance() throws SQLException {
-        return studentDAO.getAttendance();
-    }**/
 }

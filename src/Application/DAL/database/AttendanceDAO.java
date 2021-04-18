@@ -9,7 +9,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class AttendanceDAO {
@@ -20,21 +19,40 @@ public class AttendanceDAO {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
-    public List<Class> getAllClasses() throws SQLException {
-        List<Class> allCourses = new ArrayList<>();
+    /**
+     * Select a list of persons from the database that has checked in on today's class. This will be a list of students.
+     * @return a list of student object
+     * @throws SQLException
+     */
+    public List<Person> getTodaysStudent() throws SQLException{
+        List<Person> activeStudents = new ArrayList<>();
         Connection con = connectionPool.checkOut();
-        try (Statement statement = con.createStatement()){
-            ResultSet rs = statement.executeQuery("SELECT * FROM Courses");
+        try (Statement st = con.createStatement()){
+            ResultSet rs = st.executeQuery("SELECT Name, Persons.Id, Persons.IsStudent, CourseAttendance.StudentId, CourseAttendance.[Date] " +
+                    "FROM Persons " +
+                    "INNER JOIN " +
+                    "CourseAttendance " +
+                    "ON Persons.Id = CourseAttendance.StudentId " +
+                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate()) " +
+                    "AND CourseAttendance.HasAttended = 1");
             while (rs.next()){
                 int id = rs.getInt("Id");
-                String name = rs.getString("CourseName");
-                Class course = new Class(id, name);
-                allCourses.add(course);
+                String name = rs.getString("Name");
+                int type = rs.getInt("IsStudent");
+                Person stud = new Student(id, name, type);
+                activeStudents.add(stud);
             }
-            return allCourses;
+            return activeStudents;
         }
     }
 
+    /**
+     * This select a person from the database that matches the username and password that comes from the user.
+     * @param username the typed in username
+     * @param password the typed in password
+     * @return a person object. either a student or teacher.
+     * @throws SQLException
+     */
     public Person getLogin(String username, String password) throws SQLException{
         try (Connection con = connectionPool.checkOut()){
             String query = "SELECT * FROM Persons INNER JOIN LoginInformation "
