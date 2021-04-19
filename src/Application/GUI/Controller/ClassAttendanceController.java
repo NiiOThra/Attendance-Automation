@@ -64,8 +64,8 @@ public class ClassAttendanceController implements Initializable {
             int teacher2 = LoginModel.getInstance().getLoggedinPerson().getId();
             Class courseT = LoginModel.getInstance().getTeacherCourse(teacher2);
             handleOpenClass(teacher2, courseT);
-            teacherinfo.setText("Welcome to class " + teacherName + ".\nYou have " +course + " from 9-12." +
-                    "\nOn the right you can see a list of students\n that are checked in already.");
+            teacherinfo.setText("Welcome to class " + teacherName + ".\nYou teaches " +course + " from 9-12." +
+                    "\nOn the right you can see a list\nof who checked in and who didnt yet.");
 
         } catch (IOException exception) {
             exception.printStackTrace();

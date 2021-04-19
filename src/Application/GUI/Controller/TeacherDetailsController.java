@@ -3,7 +3,9 @@ package Application.GUI.Controller;
 
 import Application.BE.Attendance;
 import Application.GUI.Model.AttendanceModel;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +27,7 @@ public class TeacherDetailsController implements Initializable {
     private AttendanceModel attendanceModel;
 
     private ObservableList<Attendance> allStudents;
+    private ObservableList<String> allAbsenceDays;
 
     @FXML
     private JFXComboBox<String> weekdays;
@@ -38,11 +41,18 @@ public class TeacherDetailsController implements Initializable {
     private TableColumn<Attendance, String> nameCol;
     @FXML
     private TableColumn<Attendance, Integer> attCol;
+    @FXML
+    private JFXListView<String> lstAbsenceDays;
+    @FXML
+    private Label studentInfoLbl1;
+    @FXML
+    private JFXButton absentDayBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             attendanceModel = new AttendanceModel();
+
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
@@ -53,6 +63,9 @@ public class TeacherDetailsController implements Initializable {
         lstAllStudents.setItems(allStudents);
         nameCol.setCellValueFactory(new PropertyValueFactory<>("stud"));
         attCol.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        attCol.setSortType(TableColumn.SortType.ASCENDING);
+        lstAllStudents.getSortOrder().add(attCol);
+        lstAllStudents.sort();
 
         weekdays.getItems().add("Monday");
         weekdays.getItems().add("Tuesday");
@@ -68,17 +81,34 @@ public class TeacherDetailsController implements Initializable {
         });
     }
 
-    public void setStudentClicked(MouseEvent event){
+    public void setStudentClicked(MouseEvent event) throws SQLException {
+        lstAbsenceDays.getItems().clear();
         String studName = lstAllStudents.getSelectionModel().getSelectedItem().getStud().getName();
+        int studentId = lstAllStudents.getSelectionModel().getSelectedItem().getId();
+        allAbsenceDays = attendanceModel.getAbsenceDays(studentId);
+        int absence = attendanceModel.getAbsence(studentId);
+
         studentLbl.setText("Student: " + studName);
+        lstAbsenceDays.getItems().addAll(allAbsenceDays);
+        studentInfoLbl1.setText("Total percent of absence: " + absence + "%");
     }
 
     public void getOffDays() throws SQLException {
         String studName = lstAllStudents.getSelectionModel().getSelectedItem().getStud().getName();
         String chosenDay = weekdays.getSelectionModel().getSelectedItem();
-        int studentId = lstAllStudents.getSelectionModel().getSelectedIndex();
+        int studentId = lstAllStudents.getSelectionModel().getSelectedItem().getId();
         int offDays = attendanceModel.getOffDay(studentId, chosenDay);
+
         studentInfoLbl.setText(studName + " has " + offDays + " off days on " + chosenDay);
+    }
+
+    public void handleAbsentDay(ActionEvent event) throws SQLException {
+        String date = lstAbsenceDays.getSelectionModel().getSelectedItem();
+        int student = lstAllStudents.getSelectionModel().getSelectedItem().getId();
+
+        attendanceModel.updateAbsentDay(student, date);
+        lstAbsenceDays.getItems().remove(date);
+        absentDayBtn.setText("Absent day " + date + " for student updated.");
     }
 
     public void handleExit(ActionEvent event){

@@ -91,4 +91,5 @@ public class TeacherDAO {
             } else System.out.println(course.getName() + " already opened today so you cant open class until tomorrow");
         }
     }
+
 }

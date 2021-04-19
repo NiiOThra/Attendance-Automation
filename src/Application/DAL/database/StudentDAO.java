@@ -134,6 +134,54 @@ public class StudentDAO {
         }
     }
 
+    public int getAbsence(int studentId) throws SQLException{
+        String sql = "SELECT AttendancePercent FROM Persons WHERE Id = ?";
+
+        try (Connection con = connectionPool.checkOut();
+             PreparedStatement st = con.prepareStatement(sql)) {
+            st.setInt(1, studentId);
+            st.execute();
+
+            int attendance = 0;
+            int absence = 0;
+            ResultSet rs = st.getResultSet();
+            while (rs.next()) {
+                attendance = rs.getInt("AttendancePercent");
+                absence = 100 - attendance;
+            }
+            return absence;
+        }
+    }
+
+
+    public List<String> getAbsenceDays(int studentId) throws SQLException{
+        List<String> absenceDays = new ArrayList<>();
+        String sql = "SELECT [Date] FROM CourseAttendance WHERE HasAttended = 0 AND StudentId = ?;";
+        try (Connection con = connectionPool.checkOut()){
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, studentId);
+            st.execute();
+
+            String absenceDay = null;
+            ResultSet rs = st.getResultSet();
+            while (rs.next()){
+                absenceDay = rs.getString("Date");
+                absenceDays.add(absenceDay);
+            }
+            return absenceDays;
+        }
+    }
+
+    public void updateAbsenceDay(int studentId, String date)throws SQLException {
+        String sql = "UPDATE CourseAttendance SET HasAttended = 1 WHERE StudentId = ? AND [Date] = ?;";
+        try (Connection con = connectionPool.checkOut()) {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, studentId);
+            st.setString(2, date);
+            st.executeUpdate();
+        }
+    }
+
     /**public List<Attendance> getAttendance() throws SQLException{
         List<Attendance> attendanceCourse = new ArrayList<>();
         Connection con = connectionPool.checkOut();

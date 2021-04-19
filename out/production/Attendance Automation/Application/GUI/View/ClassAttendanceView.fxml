@@ -19,7 +19,7 @@
           <TableColumn fx:id="checkedIn" prefWidth="152.0" text="Checked In?" />
         </columns>
       </TableView>
-      <Button fx:id="checkFurther" layoutX="547.0" layoutY="542.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
+      <Button fx:id="checkFurther" layoutX="506.0" layoutY="542.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
       <Label fx:id="lbl" alignment="CENTER" contentDisplay="CENTER" layoutX="478.0" layoutY="36.0" prefHeight="38.0" prefWidth="246.0" text="Your checked in student:" textOverrun="CLIP">
          <font>
             <Font size="18.0" />
@@ -34,6 +34,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="672.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="99.0" text="Close" />
+      <Button layoutX="625.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="99.0" text="Close" />
    </children>
 </AnchorPane>

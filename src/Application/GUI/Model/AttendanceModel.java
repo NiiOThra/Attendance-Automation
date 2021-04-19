@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AttendanceModel {
 
@@ -18,6 +19,7 @@ public class AttendanceModel {
     private ObservableList<Attendance> allStudents;
     private ObservableList<Class> allClasses;
     private ObservableList<Person> activeStudents;
+    private ObservableList<String> absenceDays;
 
     /**
      * The constructor of the model class. Creating all the observable
@@ -34,6 +36,8 @@ public class AttendanceModel {
 
         activeStudents = FXCollections.observableArrayList();
         activeStudents.addAll(attendanceManager.getActiveStudents());
+
+
     }
 
     /**
@@ -66,5 +70,19 @@ public class AttendanceModel {
 
     public int getOffDay(int studentId, String weekDay) throws SQLException {
         return attendanceManager.getOffDays(studentId, weekDay);
+    }
+
+    public int getAbsence(int studentId) throws SQLException {
+        return attendanceManager.getAbsence(studentId);
+    }
+
+    public ObservableList<String> getAbsenceDays(int studentId) throws SQLException {
+        absenceDays = FXCollections.observableArrayList();
+        absenceDays.addAll(attendanceManager.getAbsenceDays(studentId));
+        return absenceDays;
+    }
+
+    public void updateAbsentDay(int studentId, String date) throws SQLException {
+        attendanceManager.updateAbsentDay(studentId, date);
     }
 }

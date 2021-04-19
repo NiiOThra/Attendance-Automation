@@ -107,6 +107,18 @@ public class AttendanceManager {
         return studentDAO.getOffDay(studentId, weekday);
     }
 
+    public int getAbsence(int studentId) throws SQLException {
+        return studentDAO.getAbsence(studentId);
+    }
+
+    public List<String> getAbsenceDays(int studentId) throws SQLException {
+        return studentDAO.getAbsenceDays(studentId);
+    }
+
+    public void updateAbsentDay(int studentId, String date) throws SQLException {
+        studentDAO.updateAbsenceDay(studentId, date);
+    }
+
     /**public List<Attendance> getAttendance() throws SQLException {
         return studentDAO.getAttendance();
     }**/
