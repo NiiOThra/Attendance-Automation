@@ -1,9 +1,7 @@
 package Application.DAL.database;
 
+import Application.BE.*;
 import Application.BE.Class;
-import Application.BE.Person;
-import Application.BE.Student;
-import Application.BE.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
@@ -20,29 +18,31 @@ public class AttendanceDAO {
     }
 
     /**
-     * Select a list of persons from the database that has checked in on today's class. This will be a list of students.
-     * @return a list of student object
+     * Select a list of all students from the database for the teacher to get an overview of todays class.. Who's checked in and who's not checked in.
      * @throws SQLException
      */
     public List<Person> getTodaysStudent() throws SQLException{
-        List<Person> activeStudents = new ArrayList<>();
+        List<Person> todaysClass = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery("SELECT Name, Persons.Id, Persons.IsStudent, CourseAttendance.StudentId, CourseAttendance.[Date] " +
+            ResultSet rs = st.executeQuery("SELECT Name, CourseAttendance.HasAttended, Persons.Id, Persons.IsStudent, CourseAttendance.StudentId, CourseAttendance.[Date] " +
                     "FROM Persons " +
                     "INNER JOIN " +
                     "CourseAttendance " +
                     "ON Persons.Id = CourseAttendance.StudentId " +
-                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate()) " +
-                    "AND CourseAttendance.HasAttended = 1");
+                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate()) AND Persons.IsStudent = 1");
+
             while (rs.next()){
                 int id = rs.getInt("Id");
                 String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
-                Person stud = new Student(id, name, type);
-                activeStudents.add(stud);
+                int attended = rs.getInt("HasAttended");
+
+                Student stud = new Student(id, name, type, attended);
+
+                todaysClass.add(stud);
             }
-            return activeStudents;
+            return todaysClass;
         }
     }
 
@@ -72,7 +72,7 @@ public class AttendanceDAO {
                 if (type == 0)
                     person = new Teacher(id, name, type);
                 else if (type ==1)
-                    person = new Student(id, name, type);
+                    person = new Student(id, name, type, 0);
 
             }return person;
         }

@@ -1,9 +1,7 @@
 package Application.BLL;
 
+import Application.BE.*;
 import Application.BE.Class;
-import Application.BE.Person;
-import Application.BE.Student;
-import Application.BE.Teacher;
 import Application.DAL.database.AttendanceDAO;
 import Application.DAL.database.StudentDAO;
 import Application.DAL.database.TeacherDAO;
@@ -32,7 +30,7 @@ public class AttendanceManager {
      * Gets a list of all the students from the studentDAO.
      * @return the list of all students.
      */
-    public List<Student> getAllStudents() throws SQLException {
+    public List<Attendance> getAllStudents() throws SQLException {
         return studentDAO.getAllStudents();
     }
 
@@ -103,6 +101,10 @@ public class AttendanceManager {
      */
     public Class todaysCourse(int studentId) throws SQLException {
         return studentDAO.todaysCourse(studentId);
+    }
+
+    public int getOffDays(int studentId, String weekday) throws SQLException {
+        return studentDAO.getOffDay(studentId, weekday);
     }
 
     /**public List<Attendance> getAttendance() throws SQLException {

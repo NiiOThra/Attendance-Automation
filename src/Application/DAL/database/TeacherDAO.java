@@ -74,7 +74,7 @@ public class TeacherDAO {
                     int id = rs2.getInt("Id");
                     String name = rs2.getString("Name");
                     int type = rs2.getInt("IsStudent");
-                    Person stud = new Student(id, name, type);
+                    Person stud = new Student(id, name, type, 0);
                     studentsInCoure.add(stud);
                 }
 
@@ -88,7 +88,7 @@ public class TeacherDAO {
                     st2.addBatch();
                 }
                 st2.executeBatch();
-            } else System.out.println("You already opened class today.");
+            } else System.out.println(course.getName() + " already opened today so you cant open class until tomorrow");
         }
     }
 }

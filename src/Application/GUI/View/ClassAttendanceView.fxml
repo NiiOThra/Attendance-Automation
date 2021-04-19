@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="vBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GUI.Controller.ClassAttendanceController">
    <stylesheets>
       <URL value="@../CSS/styleClass.css" />
    </stylesheets>
    <children>
-      <TableView fx:id="lstToday" layoutX="23.0" layoutY="55.0" prefHeight="505.0" prefWidth="344.0">
+      <TableView fx:id="lstToday" layoutX="463.0" layoutY="98.0" prefHeight="432.0" prefWidth="303.0" style="-fx-background-color: khaki;">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="222.4000244140625" text="Name" />
-          <TableColumn fx:id="attendanceColumn" prefWidth="120.0" text="Attendance %" />
+          <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Student" />
+          <TableColumn fx:id="checkedIn" prefWidth="152.0" text="Checked In?" />
         </columns>
       </TableView>
-      <Button fx:id="checkFurther" layoutX="23.0" layoutY="561.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
-      <Text fx:id="teacherlbl" layoutX="37.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="726.7999877929688">
+      <Button fx:id="checkFurther" layoutX="506.0" layoutY="542.0" mnemonicParsing="false" onAction="#getSpecificStudentInfo" prefHeight="25.0" prefWidth="109.0" text="Open details" />
+      <Label fx:id="lbl" alignment="CENTER" contentDisplay="CENTER" layoutX="478.0" layoutY="36.0" prefHeight="38.0" prefWidth="246.0" text="Your checked in student:" textOverrun="CLIP">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="classLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="28.0" prefHeight="53.0" prefWidth="444.0" text="Label" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="36.0" />
          </font>
-      </Text>
-      <PieChart fx:id="pieChart" layoutX="386.0" layoutY="86.0" prefHeight="467.0" prefWidth="390.0" style="-fx-background-color: lightblue;" />
-      <Label fx:id="classNamelbl" layoutX="422.0" layoutY="24.0" prefHeight="18.0" prefWidth="223.0" />
-      <Button fx:id="openBtn" layoutX="385.0" layoutY="55.0" mnemonicParsing="false" text="Open class" />
+      </Label>
+      <Label fx:id="teacherinfo" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="147.0" prefHeight="76.0" prefWidth="338.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="625.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="99.0" text="Close" />
    </children>
 </AnchorPane>

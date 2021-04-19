@@ -26,19 +26,22 @@ public class StudentDAO {
      * @return a list of Student objects.
      * @throws SQLException
      */
-    public List<Student> getAllStudents() throws SQLException{
-        List<Student> allStudents = new ArrayList<>();
+    public List<Attendance> getAllStudents() throws SQLException{
+        List<Attendance> allStudents = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
             ResultSet rs = st.executeQuery("SELECT * FROM Persons WHERE IsStudent = 1");
 
+            Attendance att = null;
             while (rs.next()){
                 int id = rs.getInt("ID");
                 String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
+                int attendancePercent = rs.getInt("AttendancePercent");
 
-                Student stud = new Student(id, name, type);
-                allStudents.add(stud);
+                Student stud = new Student(id, name, type, 0);
+                att = new Attendance(id, null, stud, attendancePercent);
+                allStudents.add(att);
             }
             return allStudents;
         }
@@ -109,17 +112,38 @@ public class StudentDAO {
         }
     }
 
+    public int getOffDay(int studentId, String weekday) throws SQLException {
+        String sql = "SELECT CourseAttendance.WeekDay, COUNT(WeekDay) AS offDays " +
+                "FROM CourseAttendance " +
+                "WHERE HasAttended = 0 AND studentId = ? AND WeekDay = ? " +
+                "GROUP BY WeekDay;";
+
+        try (Connection con = connectionPool.checkOut();
+             PreparedStatement st = con.prepareStatement(sql)) {
+            st.setInt(1, studentId);
+            st.setString(2, weekday);
+            st.execute();
+
+            int offdays = 0;
+            ResultSet rs = st.getResultSet();
+            while (rs.next()) {
+                offdays = rs.getInt("offDays");
+                return offdays;
+            }
+            return offdays;
+        }
+    }
+
     /**public List<Attendance> getAttendance() throws SQLException{
         List<Attendance> attendanceCourse = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery( "SELECT *, Courses.CourseName " +
-                    "FROM CourseAttendance " +
-                    "INNER JOIN StudentCourse " +
-                    "ON CourseAttendance.StudentCourseId = StudentCourse.Id " +
-                    "INNER JOIN Persons ON StudentCourse.StudentId = Persons.ID " +
-                    "INNER JOIN Courses ON StudentCourse.CourseId = Courses.Id");
-
+            ResultSet rs = st.executeQuery( "SELECT Name, Persons.AttendancePercent, Persons.Id, Persons.IsStudent, " +
+                    "FROM Persons " +
+                    "INNER JOIN " +
+                    "CourseAttendance " +
+                    "ON Persons.Id = CourseAttendance.StudentId " +
+                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate())");
 
             Student stud = null;
             Attendance att = null;
@@ -128,12 +152,13 @@ public class StudentDAO {
                 String studentName = rs.getString("Name");
                 int classId = rs.getInt("CourseId");
                 String className = rs.getString("CourseName");
-                Class course = new Class(classId, className);
+                int type = rs.getInt("IsStudent");
+                int checkedIn = rs.getInt("HasAttended");
 
-                stud= new Student(id, studentName);
-                int attendance = rs.getInt("Attendance");
+                stud= new Student(id, studentName, type, checkedIn);
+                int attendance = rs.getInt("AttendancePercent");
 
-                att = new Attendance(id, course, stud, attendance);
+                att = new Attendance(id, null, stud, attendance);
                 attendanceCourse.add(att);
             }
             return attendanceCourse;

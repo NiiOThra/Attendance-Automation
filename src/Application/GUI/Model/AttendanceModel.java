@@ -15,8 +15,7 @@ public class AttendanceModel {
 
     private final AttendanceManager attendanceManager;
 
-    private ObservableList<Student> allStudents;
-    private ObservableList<Attendance> attendanceList;
+    private ObservableList<Attendance> allStudents;
     private ObservableList<Class> allClasses;
     private ObservableList<Person> activeStudents;
 
@@ -30,18 +29,11 @@ public class AttendanceModel {
         allStudents = FXCollections.observableArrayList();
         allStudents.addAll(attendanceManager.getAllStudents());
 
-        /**attendanceList = FXCollections.observableArrayList();
-        attendanceList.addAll(attendanceManager.getAttendance());**/
-
         allClasses = FXCollections.observableArrayList();
         allClasses.addAll(attendanceManager.getStudentClasses());
 
         activeStudents = FXCollections.observableArrayList();
         activeStudents.addAll(attendanceManager.getActiveStudents());
-    }
-
-    public ObservableList<Attendance> getAttendanceList(){
-        return attendanceList;
     }
 
     /**
@@ -56,6 +48,10 @@ public class AttendanceModel {
         return activeStudents;
     }
 
+    public ObservableList<Attendance> getAllStudents(){
+        return allStudents;
+    }
+
     public void openClass(int teacherId, Class course) throws SQLException {
         attendanceManager.openClass(teacherId, course);
     }
@@ -66,5 +62,9 @@ public class AttendanceModel {
 
     public Class getTodayClass(int studentId) throws SQLException {
         return attendanceManager.todaysCourse(studentId);
+    }
+
+    public int getOffDay(int studentId, String weekDay) throws SQLException {
+        return attendanceManager.getOffDays(studentId, weekDay);
     }
 }

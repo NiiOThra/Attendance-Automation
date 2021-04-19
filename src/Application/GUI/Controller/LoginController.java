@@ -1,7 +1,5 @@
 package Application.GUI.Controller;
 
-import Application.BE.Student;
-import Application.GUI.Model.AttendanceModel;
 import Application.GUI.Model.LoginModel;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;

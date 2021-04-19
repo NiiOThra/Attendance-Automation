@@ -2,7 +2,6 @@ package Application.GUI.Controller;
 
 
 import Application.BE.Class;
-import Application.BE.Student;
 import Application.GUI.Model.AttendanceModel;
 import Application.GUI.Model.LoginModel;
 import com.jfoenix.controls.JFXComboBox;
@@ -14,11 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,20 +45,15 @@ public class MyAttendanceController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             attendanceModel = new AttendanceModel();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
-
-        try {
             LoginModel.getInstance();
             String name = LoginModel.getInstance().getLoggedinPerson().getName();
             nameField.setText(name);
+
             int loggedInStudent = LoginModel.getInstance().getLoggedinPerson().getId();
             Class course = attendanceModel.getTodayClass(loggedInStudent);
             checkInBtn.setText("Check in for " + course + " now");
+
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
