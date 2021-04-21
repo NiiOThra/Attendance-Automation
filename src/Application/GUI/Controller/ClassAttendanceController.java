@@ -32,7 +32,7 @@ public class ClassAttendanceController implements Initializable {
     @FXML
     private TableView<Person> lstToday;
     @FXML
-    private TableColumn<Person, Integer> checkedIn;
+    private TableColumn<Person, String> checkedIn;
     @FXML
     private TableColumn<Person, String> nameColumn;
     @FXML

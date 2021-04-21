@@ -25,21 +25,16 @@ import java.util.ResourceBundle;
 public class MyAttendanceController implements Initializable {
 
     private AttendanceModel attendanceModel;
+    private ObservableList<String> allAbsenceDays;
 
     @FXML
     private Button checkInBtn;
     @FXML
-    private JFXComboBox<String> lstView;
-    @FXML
-    private PieChart pieChart;
-    @FXML
-    private Label percLbl;
-    @FXML
-    private JFXListView lstAbsenceDays;
-    @FXML
-    private Button updateBtn;
-    @FXML
     private Label nameField;
+    @FXML
+    private Label myAttendanceLbl;
+    @FXML
+    private JFXListView<String> lstAbsenceDays;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,15 +47,20 @@ public class MyAttendanceController implements Initializable {
 
             int loggedInStudent = LoginModel.getInstance().getLoggedinPerson().getId();
             Class course = attendanceModel.getTodayClass(loggedInStudent);
-            checkInBtn.setText("Check in for " + course + " now");
+            if (attendanceModel.getTodayClass(loggedInStudent)== null){
+                checkInBtn.setText("No class available right now.");
+            } else checkInBtn.setText("Check in for " + course + " now");
+
+            int myAttendance = attendanceModel.getAttendance(loggedInStudent);
+            myAttendanceLbl.setText("You're attendance for this semester: " + myAttendance);
+            allAbsenceDays = attendanceModel.getAbsenceDays(loggedInStudent);
+            lstAbsenceDays.getItems().addAll(allAbsenceDays);
 
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-        lstView.getItems().add("Whole semester");
     }
 
     public void handleCheckIn(ActionEvent event) throws IOException, SQLException {
@@ -68,30 +68,6 @@ public class MyAttendanceController implements Initializable {
         int course = attendanceModel.getTodayClass(student).getClassID();
         attendanceModel.checkIn(student, course);
         checkInBtn.setText("Your checked in for today!");
-    }
-
-    public void handleChooseView(ActionEvent event){
-        int selectedView = lstView.getSelectionModel().getSelectedIndex();
-
-        if (selectedView == 0){
-            percLbl.setText("Absence for this semester: 4%");
-            getPieChart();
-        }
-    }
-
-    private void getPieChart(){
-        ObservableList<PieChart.Data> pieChartSmst = FXCollections.observableArrayList();
-
-        pieChartSmst.add(new PieChart.Data("SCO", 90));
-        pieChartSmst.add(new PieChart.Data("DBOS", 98));
-        pieChartSmst.add(new PieChart.Data("SDE", 78));
-        pieChartSmst.add(new PieChart.Data("ITO", 67));
-
-        pieChart.setData(pieChartSmst);
-        pieChart.setTitle("Attendance for the semester");
-
-        pieChartSmst.forEach(data ->
-                data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
     }
 
     public void handleCloseApp(ActionEvent event){

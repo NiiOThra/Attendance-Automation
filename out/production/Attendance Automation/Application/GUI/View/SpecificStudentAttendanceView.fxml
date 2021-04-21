@@ -43,6 +43,6 @@
             <JFXButton fx:id="absentDayBtn" layoutX="67.0" layoutY="349.0" onAction="#handleAbsentDay" prefHeight="25.0" prefWidth="228.0" text="Remove absent day for student" />
          </children>
       </Pane>
-      <Button layoutX="546.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="26.0" prefWidth="93.0" text="Button" />
+      <Button layoutX="681.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="26.0" prefWidth="93.0" text="Exit" />
    </children>
 </AnchorPane>

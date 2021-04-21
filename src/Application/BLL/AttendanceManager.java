@@ -119,6 +119,10 @@ public class AttendanceManager {
         studentDAO.updateAbsenceDay(studentId, date);
     }
 
+    public int getAttendance(int studentId) throws SQLException {
+        return studentDAO.getAbsence(studentId);
+    }
+
     /**public List<Attendance> getAttendance() throws SQLException {
         return studentDAO.getAttendance();
     }**/

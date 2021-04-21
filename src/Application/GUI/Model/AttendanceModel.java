@@ -85,4 +85,8 @@ public class AttendanceModel {
     public void updateAbsentDay(int studentId, String date) throws SQLException {
         attendanceManager.updateAbsentDay(studentId, date);
     }
+
+    public int getAttendance(int studentId) throws SQLException {
+        return attendanceManager.getAttendance(studentId);
+    }
 }

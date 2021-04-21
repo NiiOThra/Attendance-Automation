@@ -36,7 +36,7 @@ public class AttendanceDAO {
                 int id = rs.getInt("Id");
                 String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
-                int attended = rs.getInt("HasAttended");
+                String attended = rs.getString("HasAttended");
 
                 Student stud = new Student(id, name, type, attended);
 
@@ -72,7 +72,7 @@ public class AttendanceDAO {
                 if (type == 0)
                     person = new Teacher(id, name, type);
                 else if (type ==1)
-                    person = new Student(id, name, type, 0);
+                    person = new Student(id, name, type, null);
 
             }return person;
         }

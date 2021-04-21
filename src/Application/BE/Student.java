@@ -4,18 +4,18 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 public class Student extends Person {
 
-    int checkedIn;
+    String checkedIn;
 
-    public Student(int studentID, String name, int type, int checkedIn) {
+    public Student(int studentID, String name, int type, String checkedIn) {
         super(studentID, name, type);
         this.checkedIn = checkedIn;
     }
 
-    public int getCheckedIn(){
+    public String getCheckedIn(){
         return checkedIn;
     }
 
-    public void setCheckedIn(int checkedIn){
+    public void setCheckedIn(String checkedIn){
         this.checkedIn = checkedIn;
     }
 }

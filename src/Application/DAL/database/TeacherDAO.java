@@ -74,11 +74,11 @@ public class TeacherDAO {
                     int id = rs2.getInt("Id");
                     String name = rs2.getString("Name");
                     int type = rs2.getInt("IsStudent");
-                    Person stud = new Student(id, name, type, 0);
+                    Person stud = new Student(id, name, type, null);
                     studentsInCoure.add(stud);
                 }
 
-                String sql2 = "INSERT INTO CourseAttendance(HasAttended, CreatedBy, StudentId, CourseId) VALUES(0, ?, ?, ?);";
+                String sql2 = "INSERT INTO CourseAttendance(CreatedBy, StudentId, CourseId) VALUES(?, ?, ?);";
                 PreparedStatement st2 = con.prepareStatement(sql2);
                 for (Iterator<Person> iterator = studentsInCoure.iterator(); iterator.hasNext(); ) {
                     Person per = (Person) iterator.next();

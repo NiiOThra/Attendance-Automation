@@ -34,6 +34,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="625.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="99.0" text="Close" />
+      <Button layoutX="625.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="99.0" text="Exit" />
    </children>
 </AnchorPane>
