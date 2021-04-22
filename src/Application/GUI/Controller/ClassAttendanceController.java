@@ -64,8 +64,8 @@ public class ClassAttendanceController implements Initializable {
             int teacher2 = LoginModel.getInstance().getLoggedinPerson().getId();
             Class courseT = LoginModel.getInstance().getTeacherCourse(teacher2);
             handleOpenClass(teacher2, courseT);
-            teacherinfo.setText("Welcome to class " + teacherName + ".\nYou teaches " +course + " from 9-12." +
-                    "\nOn the right you can see a list\nof who checked in and who didnt yet.");
+            teacherinfo.setText("Welcome to class " + teacherName + ".\nYou teach " +course + " from 9-12." +
+                    "\nOn the right, you can see a list\nof who checked in and who didn't yet.");
 
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -93,7 +93,7 @@ public class ClassAttendanceController implements Initializable {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Attendance Automation: student details");
+            stage.setTitle("Attendance Automation: Student details");
             stage.setScene(new Scene(mainLayout));
             stage.setResizable(false);
             stage.show();

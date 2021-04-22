@@ -99,7 +99,7 @@ public class TeacherDetailsController implements Initializable {
         int studentId = lstAllStudents.getSelectionModel().getSelectedItem().getId();
         int offDays = attendanceModel.getOffDay(studentId, chosenDay);
 
-        studentInfoLbl.setText(studName + " has " + offDays + " off days on " + chosenDay);
+        studentInfoLbl.setText(studName + " has " + offDays + " days of absence on " + chosenDay);
     }
 
     public void handleAbsentDay(ActionEvent event) throws SQLException {
