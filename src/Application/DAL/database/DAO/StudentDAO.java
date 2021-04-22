@@ -1,11 +1,12 @@
-package Application.DAL.database;
+package Application.DAL.database.DAO;
 
 import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Person;
 import Application.BE.Student;
+import Application.DAL.database.JDBCConnectionPool;
+import Application.DAL.database.MyDatabaseConnector;
 
-import javax.swing.text.html.HTMLDocument;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,52 +45,6 @@ public class StudentDAO {
                 allStudents.add(att);
             }
             return allStudents;
-        }
-    }
-
-    /**
-     * Gets a list of courses from the database.
-     * @return a list of Class objects.
-     * @throws SQLException
-     */
-    public List<Class> getAllClasses() throws SQLException {
-        List<Class> allCourses = new ArrayList<>();
-        Connection con = connectionPool.checkOut();
-        try (Statement st = con.createStatement()){
-
-            ResultSet rs = st.executeQuery("SELECT * FROM Courses");
-            while (rs.next()) {
-                int id = rs.getInt("Id");
-                String name = rs.getString("CourseName");
-                Class course = new Class(id, name);
-                allCourses.add(course);
-            }
-        } return allCourses;
-    }
-
-    /**
-     * Gets today's course for the student to see..
-     * @param studentId
-     * @return a Class object
-     * @throws SQLException
-     */
-    public Class todaysCourse(int studentId) throws SQLException{
-        String sql = "SELECT CourseId, Courses.CourseName FROM CourseAttendance INNER JOIN Courses " +
-                "ON CourseAttendance.CourseId = Courses.Id WHERE CourseAttendance.[Date] = CONVERT(date, GETDATE()) " +
-                "AND CourseAttendance.StudentId = ?;";
-        try (Connection con = connectionPool.checkOut();
-            PreparedStatement st = con.prepareStatement(sql)){
-            st.setInt(1, studentId);
-            st.execute();
-
-            Class course = null;
-            ResultSet rs = st.getResultSet();
-            while (rs.next()){
-                int id = rs.getInt("CourseId");
-                String name = rs.getString("CourseName");
-                course= new Class(id, name);
-            }
-            return course;
         }
     }
 
@@ -170,7 +125,6 @@ public class StudentDAO {
         }
     }
 
-
     public List<String> getAbsenceDays(int studentId) throws SQLException{
         List<String> absenceDays = new ArrayList<>();
         String sql = "SELECT [Date] FROM CourseAttendance WHERE HasAttended = 'False' AND StudentId = ?;";
@@ -189,44 +143,34 @@ public class StudentDAO {
         }
     }
 
-    public void updateAbsenceDay(int studentId, String date)throws SQLException {
-        String sql = "UPDATE CourseAttendance SET HasAttended = 'True' WHERE StudentId = ? AND [Date] = ?;";
-        try (Connection con = connectionPool.checkOut()) {
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, studentId);
-            st.setString(2, date);
-            st.executeUpdate();
-        }
-    }
-
-    /**public List<Attendance> getAttendance() throws SQLException{
-        List<Attendance> attendanceCourse = new ArrayList<>();
+    /**
+     * Select a list of all students from the database for the teacher to get an overview of todays class..
+     * Who's checked in and who's not checked in.
+     * @throws SQLException
+     */
+    public List<Person> getTodaysStudent() throws SQLException{
+        List<Person> todaysStudents = new ArrayList<>();
         Connection con = connectionPool.checkOut();
         try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery( "SELECT Name, Persons.AttendancePercent, Persons.Id, Persons.IsStudent, " +
+            ResultSet rs = st.executeQuery("SELECT Name, CourseAttendance.HasAttended, Persons.Id, Persons.IsStudent, " +
+                    "CourseAttendance.StudentId, CourseAttendance.[Date] " +
                     "FROM Persons " +
                     "INNER JOIN " +
                     "CourseAttendance " +
                     "ON Persons.Id = CourseAttendance.StudentId " +
-                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate())");
+                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate()) AND Persons.IsStudent = 1");
 
-            Student stud = null;
-            Attendance att = null;
             while (rs.next()){
-                int id = rs.getInt("StudentId");
-                String studentName = rs.getString("Name");
-                int classId = rs.getInt("CourseId");
-                String className = rs.getString("CourseName");
+                int id = rs.getInt("Id");
+                String name = rs.getString("Name");
                 int type = rs.getInt("IsStudent");
-                int checkedIn = rs.getInt("HasAttended");
+                String attended = rs.getString("HasAttended");
 
-                stud= new Student(id, studentName, type, checkedIn);
-                int attendance = rs.getInt("AttendancePercent");
+                Student stud = new Student(id, name, type, attended);
 
-                att = new Attendance(id, null, stud, attendance);
-                attendanceCourse.add(att);
+                todaysStudents.add(stud);
             }
-            return attendanceCourse;
+            return todaysStudents;
         }
-    }**/
+    }
 }

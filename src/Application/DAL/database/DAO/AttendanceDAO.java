@@ -1,13 +1,16 @@
-package Application.DAL.database;
+package Application.DAL.database.DAO;
 
-import Application.BE.*;
-import Application.BE.Class;
+import Application.BE.Person;
+import Application.BE.Student;
+import Application.BE.Teacher;
+import Application.DAL.database.JDBCConnectionPool;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AttendanceDAO {
 
@@ -18,31 +21,18 @@ public class AttendanceDAO {
     }
 
     /**
-     * Select a list of all students from the database for the teacher to get an overview of todays class.. Who's checked in and who's not checked in.
+     * Method to correct the attendance on a student with a specific id.
+     * @param studentId
+     * @param date
      * @throws SQLException
      */
-    public List<Person> getTodaysStudent() throws SQLException{
-        List<Person> todaysClass = new ArrayList<>();
-        Connection con = connectionPool.checkOut();
-        try (Statement st = con.createStatement()){
-            ResultSet rs = st.executeQuery("SELECT Name, CourseAttendance.HasAttended, Persons.Id, Persons.IsStudent, CourseAttendance.StudentId, CourseAttendance.[Date] " +
-                    "FROM Persons " +
-                    "INNER JOIN " +
-                    "CourseAttendance " +
-                    "ON Persons.Id = CourseAttendance.StudentId " +
-                    "WHERE CourseAttendance.[Date] = CONVERT(date, getdate()) AND Persons.IsStudent = 1");
-
-            while (rs.next()){
-                int id = rs.getInt("Id");
-                String name = rs.getString("Name");
-                int type = rs.getInt("IsStudent");
-                String attended = rs.getString("HasAttended");
-
-                Student stud = new Student(id, name, type, attended);
-
-                todaysClass.add(stud);
-            }
-            return todaysClass;
+    public void updateAbsenceDay(int studentId, String date)throws SQLException {
+        String sql = "UPDATE CourseAttendance SET HasAttended = 'True' WHERE StudentId = ? AND [Date] = ?;";
+        try (Connection con = connectionPool.checkOut()) {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, studentId);
+            st.setString(2, date);
+            st.executeUpdate();
         }
     }
 

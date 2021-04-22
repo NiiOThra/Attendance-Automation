@@ -1,12 +1,12 @@
-package Application.DAL.database;
+package Application.DAL.database.DAO;
 
 import Application.BE.Class;
 import Application.BE.Person;
 import Application.BE.Student;
-import Application.BE.Teacher;
+import Application.DAL.database.JDBCConnectionPool;
+import Application.DAL.database.MyDatabaseConnector;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;

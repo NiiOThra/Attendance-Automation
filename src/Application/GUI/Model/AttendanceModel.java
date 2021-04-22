@@ -3,14 +3,12 @@ package Application.GUI.Model;
 import Application.BE.Attendance;
 import Application.BE.Class;
 import Application.BE.Person;
-import Application.BE.Student;
 import Application.BLL.AttendanceManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 public class AttendanceModel {
 
@@ -18,7 +16,7 @@ public class AttendanceModel {
 
     private ObservableList<Attendance> allStudents;
     private ObservableList<Class> allClasses;
-    private ObservableList<Person> activeStudents;
+    private ObservableList<Person> todaysStudents;
     private ObservableList<String> absenceDays;
 
     /**
@@ -34,22 +32,12 @@ public class AttendanceModel {
         allClasses = FXCollections.observableArrayList();
         allClasses.addAll(attendanceManager.getStudentClasses());
 
-        activeStudents = FXCollections.observableArrayList();
-        activeStudents.addAll(attendanceManager.getActiveStudents());
-
-
-    }
-
-    /**
-     * Gets a list of all classes.
-     * @return the list of students.
-     */
-    public ObservableList<Class> getAllClasses(){
-        return allClasses;
+        todaysStudents = FXCollections.observableArrayList();
+        todaysStudents.addAll(attendanceManager.getTodaysStudent());
     }
 
     public ObservableList<Person> getActiveStudents(){
-        return activeStudents;
+        return todaysStudents;
     }
 
     public ObservableList<Attendance> getAllStudents(){
