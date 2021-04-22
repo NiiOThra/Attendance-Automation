@@ -1,19 +1,14 @@
 package Application.GUI.Controller;
 
-
 import Application.BE.Class;
 import Application.GUI.Model.AttendanceModel;
 import Application.GUI.Model.LoginModel;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -63,6 +58,13 @@ public class MyAttendanceController implements Initializable {
         }
     }
 
+    /**
+     * Handles the button where the student checks in for class. The class is already set for student and the student
+     * can only check in for today.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     public void handleCheckIn(ActionEvent event) throws IOException, SQLException {
         int student = LoginModel.getInstance().getLoggedinPerson().getId();
         int course = attendanceModel.getTodayClass(student).getClassID();
@@ -73,5 +75,4 @@ public class MyAttendanceController implements Initializable {
     public void handleCloseApp(ActionEvent event){
         Platform.exit();
     }
-
 }

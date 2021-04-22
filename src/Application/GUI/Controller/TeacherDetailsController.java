@@ -81,6 +81,12 @@ public class TeacherDetailsController implements Initializable {
         });
     }
 
+    /**
+     * Reacts if you click on a specific student in the list of students. You can choose a student to get a view of the
+     * specific student, in regards to absence and if there's any day in the week he/she is particular absence.
+     * @param event
+     * @throws SQLException
+     */
     public void setStudentClicked(MouseEvent event) throws SQLException {
         lstAbsenceDays.getItems().clear();
         String studName = lstAllStudents.getSelectionModel().getSelectedItem().getStud().getName();
@@ -93,6 +99,10 @@ public class TeacherDetailsController implements Initializable {
         studentInfoLbl1.setText("Total percent of absence: " + absence + "%");
     }
 
+    /**
+     * Just to set the studentInfoLbl.
+     * @throws SQLException
+     */
     public void getOffDays() throws SQLException {
         String studName = lstAllStudents.getSelectionModel().getSelectedItem().getStud().getName();
         String chosenDay = weekdays.getSelectionModel().getSelectedItem();
@@ -102,6 +112,11 @@ public class TeacherDetailsController implements Initializable {
         studentInfoLbl.setText(studName + " has " + offDays + " days of absence on " + chosenDay);
     }
 
+    /**
+     * A tool for the teacher to update an off day for the student.
+     * @param event
+     * @throws SQLException
+     */
     public void handleAbsentDay(ActionEvent event) throws SQLException {
         String date = lstAbsenceDays.getSelectionModel().getSelectedItem();
         int student = lstAllStudents.getSelectionModel().getSelectedItem().getId();
@@ -111,6 +126,10 @@ public class TeacherDetailsController implements Initializable {
         absentDayBtn.setText("Absent day " + date + " for student updated.");
     }
 
+    /**
+     * Just a button to exit the application.
+     * @param event
+     */
     public void handleExit(ActionEvent event){
         Platform.exit();
     }

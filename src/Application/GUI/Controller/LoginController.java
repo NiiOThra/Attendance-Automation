@@ -34,6 +34,13 @@ public class LoginController implements Initializable {
         passwordField.setText("lGmd5yh");
     }
 
+    /**
+     * Handles the login button. First we get a instance of the person who is trying to login. After that we get the type
+     * so we can determine whether we go to one side or the other of the user interface.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     public void handleLogin(ActionEvent event) throws IOException, SQLException {
         LoginModel.getInstance().loginPerson(userField.getText(), passwordField.getText());
@@ -62,6 +69,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Just a button to exit the application.
+     * @param event
+     */
     public void handleCloseApp(ActionEvent event) {
         Platform.exit();
     }

@@ -67,6 +67,14 @@ public class StudentDAO {
         }
     }
 
+    /**
+     * A method to see how Mondays, for example, a student has been absence. This method is to check
+     * if there's any weekdays in particular the student is absence.
+     * @param studentId the student to view
+     * @param weekday the specific weekday to investigate
+     * @return the number of days the chosen student has been absent on the chosen days.
+     * @throws SQLException
+     */
     public int getOffDay(int studentId, String weekday) throws SQLException {
         String sql = "SELECT CourseAttendance.WeekDay, COUNT(WeekDay) AS offDays " +
                 "FROM CourseAttendance " +
@@ -89,6 +97,12 @@ public class StudentDAO {
         }
     }
 
+    /**
+     * A method to get the attendance of a specific student.
+     * @param studentId
+     * @return the attendance of the chosen student
+     * @throws SQLException
+     */
     public int getAttendance(int studentId) throws SQLException{
         String sql = "SELECT AttendancePercent FROM Persons WHERE Id = ?";
 
@@ -106,6 +120,12 @@ public class StudentDAO {
         }
     }
 
+    /**
+     * A method to get the absence of a specific student.
+     * @param studentId
+     * @return the absence of the chosen student.
+     * @throws SQLException
+     */
     public int getAbsence(int studentId) throws SQLException{
         String sql = "SELECT AttendancePercent FROM Persons WHERE Id = ?";
 
@@ -125,6 +145,12 @@ public class StudentDAO {
         }
     }
 
+    /**
+     * A method that gets a list of days from the database, that the student has not attended.
+     * @param studentId
+     * @return a list of absence days
+     * @throws SQLException
+     */
     public List<String> getAbsenceDays(int studentId) throws SQLException{
         List<String> absenceDays = new ArrayList<>();
         String sql = "SELECT [Date] FROM CourseAttendance WHERE HasAttended = 'False' AND StudentId = ?;";
