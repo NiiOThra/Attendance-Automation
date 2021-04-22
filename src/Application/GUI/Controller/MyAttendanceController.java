@@ -52,7 +52,7 @@ public class MyAttendanceController implements Initializable {
             } else checkInBtn.setText("Check in for " + course + " now");
 
             int myAttendance = attendanceModel.getAttendance(loggedInStudent);
-            myAttendanceLbl.setText("You're attendance for this semester: " + myAttendance);
+            myAttendanceLbl.setText("Your attendance for this semester: " + myAttendance);
             allAbsenceDays = attendanceModel.getAbsenceDays(loggedInStudent);
             lstAbsenceDays.getItems().addAll(allAbsenceDays);
 
@@ -67,7 +67,7 @@ public class MyAttendanceController implements Initializable {
         int student = LoginModel.getInstance().getLoggedinPerson().getId();
         int course = attendanceModel.getTodayClass(student).getClassID();
         attendanceModel.checkIn(student, course);
-        checkInBtn.setText("Your checked in for today!");
+        checkInBtn.setText("You're checked in for today!");
     }
 
     public void handleCloseApp(ActionEvent event){
